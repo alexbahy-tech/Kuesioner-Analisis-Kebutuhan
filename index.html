@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MGMP Bahasa Inggris SMK — Needs Assessment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f0f4f8;--surface:#fff;--surface-alt:#f7fafc;
+  --primary:#0f4c81;--primary-light:#1a6bb5;--primary-pale:#e8f0fa;
+  --accent:#e8913a;--accent-light:#f5a623;
+  --text:#1a2332;--text-secondary:#5a6a7e;--text-muted:#8e9bae;
+  --border:#dfe6ee;--border-light:#edf1f7;
+  --success:#2d9f6f;--success-bg:#e6f7ef;
+  --danger:#d64545;--danger-bg:#fde8e8;
+  --warning:#e8913a;--warning-bg:#fef3e0;
+  --radius:12px;--radius-lg:20px;--radius-xl:28px;
+  --shadow-sm:0 1px 3px rgba(15,76,129,.06);
+  --shadow:0 4px 16px rgba(15,76,129,.08);
+  --shadow-lg:0 12px 40px rgba(15,76,129,.12);
+  --shadow-xl:0 20px 60px rgba(15,76,129,.16);
+  --font:'Plus Jakarta Sans',system-ui,sans-serif;
+  --font-display:'Playfair Display',Georgia,serif;
+  --transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--primary);border-radius:8px}
+
+/* === HEADER === */
+.hero{
+  background:linear-gradient(135deg,#0a2e50 0%,#0f4c81 40%,#1a6bb5 100%);
+  position:relative;overflow:hidden;padding:2.5rem 1.5rem;text-align:center;color:#fff;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,.12);backdrop-filter:blur(8px);
+  padding:6px 16px;border-radius:20px;font-size:.75rem;font-weight:600;
+  letter-spacing:.5px;text-transform:uppercase;margin-bottom:1rem;
+  border:1px solid rgba(255,255,255,.15);
+}
+.hero h1{font-family:var(--font-display);font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;margin-bottom:.4rem;position:relative}
+.hero p{font-size:.95rem;opacity:.8;max-width:540px;margin:0 auto;position:relative;font-weight:300}
+
+/* === PROGRESS === */
+.progress-container{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border-light);
+  padding:.75rem 1.5rem;
+}
+.progress-inner{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:1rem}
+.progress-steps{flex:1;display:flex;gap:4px}
+.progress-step{
+  flex:1;height:5px;border-radius:8px;background:var(--border);transition:var(--transition);
+}
+.progress-step.done{background:var(--primary)}
+.progress-step.active{background:var(--accent);animation:pulse-bar 2s infinite}
+@keyframes pulse-bar{0%,100%{opacity:1}50%{opacity:.6}}
+.progress-label{font-size:.75rem;font-weight:600;color:var(--text-secondary);white-space:nowrap;min-width:80px;text-align:right}
+
+/* === MAIN === */
+.main{max-width:720px;margin:0 auto;padding:1.5rem}
+
+/* === SECTION CARDS === */
+.section-card{
+  background:var(--surface);border-radius:var(--radius-lg);
+  box-shadow:var(--shadow);margin-bottom:1.5rem;overflow:hidden;
+  border:1px solid var(--border-light);
+  animation:slideUp .5s ease both;
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.section-header{
+  padding:1.5rem 1.5rem 1rem;
+  border-bottom:1px solid var(--border-light);
+}
+.section-tag{
+  font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;
+  color:var(--accent);margin-bottom:.3rem;
+}
+.section-title{font-family:var(--font-display);font-size:1.3rem;color:var(--primary);margin-bottom:.25rem}
+.section-subtitle{font-size:.8rem;color:var(--text-muted);font-style:italic}
+.section-body{padding:1.25rem 1.5rem 1.5rem}
+
+/* === FORM ELEMENTS === */
+.form-group{margin-bottom:1.25rem}
+.form-label{
+  display:block;font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:.4rem;
+}
+.form-label-en{font-size:.72rem;color:var(--text-muted);font-style:italic;font-weight:400}
+.form-input,.form-select,.form-textarea{
+  width:100%;padding:.7rem .9rem;border:1.5px solid var(--border);border-radius:var(--radius);
+  font-family:var(--font);font-size:.88rem;color:var(--text);
+  background:var(--surface);transition:var(--transition);
+}
+.form-input:focus,.form-select:focus,.form-textarea:focus{
+  outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-pale);
+}
+.form-textarea{resize:vertical;min-height:80px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}}
+
+/* === LIKERT === */
+.likert-item{
+  background:var(--surface-alt);border:1px solid var(--border-light);border-radius:var(--radius);
+  padding:1rem;margin-bottom:.6rem;transition:var(--transition);
+}
+.likert-item:hover{border-color:var(--primary-light);transform:translateX(3px)}
+.likert-text{font-size:.85rem;font-weight:500;margin-bottom:.15rem}
+.likert-text-en{font-size:.72rem;color:var(--text-muted);font-style:italic;margin-bottom:.6rem}
+.likert-options{display:flex;gap:6px}
+.likert-btn{
+  flex:1;padding:.45rem .2rem;border:1.5px solid var(--border);border-radius:8px;
+  background:var(--surface);font-size:.7rem;font-weight:600;color:var(--text-secondary);
+  cursor:pointer;transition:var(--transition);text-align:center;line-height:1.2;
+}
+.likert-btn:hover{border-color:var(--primary);color:var(--primary)}
+.likert-btn.selected{
+  background:var(--primary);color:#fff;border-color:var(--primary);
+  box-shadow:0 2px 8px rgba(15,76,129,.25);
+}
+.likert-labels{display:flex;justify-content:space-between;margin-bottom:.3rem}
+.likert-labels span{font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
+
+/* === CHECKBOX GROUP === */
+.check-group{display:flex;flex-direction:column;gap:.4rem}
+.check-item{
+  display:flex;align-items:flex-start;gap:.6rem;padding:.6rem .8rem;
+  border:1.5px solid var(--border-light);border-radius:var(--radius);
+  cursor:pointer;transition:var(--transition);background:var(--surface);
+}
+.check-item:hover{border-color:var(--primary-light);background:var(--primary-pale)}
+.check-item.checked{border-color:var(--primary);background:var(--primary-pale)}
+.check-box{
+  width:20px;height:20px;border:2px solid var(--border);border-radius:6px;
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  transition:var(--transition);margin-top:1px;
+}
+.check-item.checked .check-box{background:var(--primary);border-color:var(--primary)}
+.check-box svg{width:12px;height:12px;stroke:#fff;stroke-width:3;fill:none;opacity:0;transition:var(--transition)}
+.check-item.checked .check-box svg{opacity:1}
+.check-text{font-size:.82rem;font-weight:500;line-height:1.4}
+.check-text-en{font-size:.7rem;color:var(--text-muted);font-style:italic}
+
+/* === RADIO GROUP === */
+.radio-group{display:flex;flex-direction:column;gap:.4rem}
+.radio-item{
+  display:flex;align-items:center;gap:.6rem;padding:.55rem .8rem;
+  border:1.5px solid var(--border-light);border-radius:var(--radius);
+  cursor:pointer;transition:var(--transition);background:var(--surface);
+}
+.radio-item:hover{border-color:var(--primary-light)}
+.radio-item.selected{border-color:var(--primary);background:var(--primary-pale)}
+.radio-dot{
+  width:18px;height:18px;border:2px solid var(--border);border-radius:50%;
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  transition:var(--transition);
+}
+.radio-item.selected .radio-dot{border-color:var(--primary)}
+.radio-dot::after{
+  content:'';width:10px;height:10px;border-radius:50%;background:var(--primary);
+  transform:scale(0);transition:var(--transition);
+}
+.radio-item.selected .radio-dot::after{transform:scale(1)}
+
+/* === NAVIGATION === */
+.nav-buttons{display:flex;gap:.75rem;margin-top:1.5rem;justify-content:space-between}
+.btn{
+  padding:.75rem 1.5rem;border:none;border-radius:var(--radius);
+  font-family:var(--font);font-size:.88rem;font-weight:600;cursor:pointer;
+  transition:var(--transition);display:inline-flex;align-items:center;gap:.5rem;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--primary),var(--primary-light));
+  color:#fff;box-shadow:0 4px 12px rgba(15,76,129,.25);
+}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(15,76,129,.3)}
+.btn-secondary{background:var(--surface);color:var(--text-secondary);border:1.5px solid var(--border)}
+.btn-secondary:hover{border-color:var(--primary);color:var(--primary)}
+.btn-accent{
+  background:linear-gradient(135deg,var(--accent),var(--accent-light));
+  color:#fff;box-shadow:0 4px 12px rgba(232,145,58,.3);
+}
+.btn-accent:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(232,145,58,.35)}
+.btn-success{background:var(--success);color:#fff}
+.btn-success:hover{filter:brightness(1.1);transform:translateY(-1px)}
+
+/* === HIDDEN SECTIONS === */
+.step{display:none}.step.active{display:block}
+
+/* === RESULTS DASHBOARD === */
+.dashboard{display:none}
+.dashboard.active{display:block}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.75rem;margin-bottom:1.5rem}
+.stat-card{
+  background:var(--surface);border-radius:var(--radius);padding:1rem;text-align:center;
+  border:1px solid var(--border-light);box-shadow:var(--shadow-sm);
+}
+.stat-value{font-size:1.8rem;font-weight:800;color:var(--primary);line-height:1}
+.stat-label{font-size:.7rem;color:var(--text-muted);margin-top:.3rem;text-transform:uppercase;letter-spacing:.5px}
+
+.chart-card{
+  background:var(--surface);border-radius:var(--radius-lg);padding:1.25rem;
+  margin-bottom:1rem;border:1px solid var(--border-light);box-shadow:var(--shadow-sm);
+}
+.chart-title{font-size:.85rem;font-weight:700;color:var(--primary);margin-bottom:.75rem;display:flex;align-items:center;gap:.4rem}
+.chart-title-icon{font-size:1rem}
+
+/* Horizontal Bar Chart */
+.hbar{margin-bottom:.5rem}
+.hbar-label{font-size:.75rem;font-weight:500;margin-bottom:.2rem;display:flex;justify-content:space-between}
+.hbar-label span:last-child{font-weight:700;color:var(--primary)}
+.hbar-track{height:22px;background:var(--border-light);border-radius:6px;overflow:hidden;position:relative}
+.hbar-fill{
+  height:100%;border-radius:6px;transition:width .8s cubic-bezier(.4,0,.2,1);
+  display:flex;align-items:center;justify-content:flex-end;padding-right:6px;
+  font-size:.65rem;font-weight:700;color:#fff;min-width:0;
+}
+
+/* Priority list */
+.priority-list{counter-reset:priority}
+.priority-item{
+  display:flex;align-items:center;gap:.75rem;padding:.65rem .8rem;
+  border-radius:var(--radius);margin-bottom:.4rem;
+  background:var(--surface-alt);border:1px solid var(--border-light);
+  animation:slideIn .4s ease both;
+}
+.priority-item::before{
+  counter-increment:priority;content:counter(priority);
+  width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;font-weight:800;flex-shrink:0;
+}
+.priority-item:nth-child(1)::before{background:var(--accent);color:#fff}
+.priority-item:nth-child(2)::before{background:var(--primary);color:#fff}
+.priority-item:nth-child(3)::before{background:var(--primary-light);color:#fff}
+.priority-item:nth-child(n+4)::before{background:var(--border);color:var(--text-secondary)}
+.priority-text{font-size:.8rem;font-weight:500;flex:1}
+.priority-score{font-size:.75rem;font-weight:700;color:var(--primary)}
+@keyframes slideIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+
+/* Recommendation cards */
+.rec-card{
+  border-left:4px solid var(--accent);background:var(--surface-alt);
+  border-radius:0 var(--radius) var(--radius) 0;padding:1rem 1.25rem;margin-bottom:.6rem;
+}
+.rec-card h4{font-size:.82rem;font-weight:700;color:var(--primary);margin-bottom:.2rem}
+.rec-card p{font-size:.75rem;color:var(--text-secondary);line-height:1.5}
+.rec-tag{
+  display:inline-block;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+  padding:2px 8px;border-radius:4px;margin-bottom:.3rem;
+}
+.rec-tag.easy{background:var(--success-bg);color:var(--success)}
+.rec-tag.medium{background:var(--warning-bg);color:var(--warning)}
+.rec-tag.hard{background:var(--danger-bg);color:var(--danger)}
+
+/* Export area */
+.export-section{
+  background:linear-gradient(135deg,#0a2e50,#0f4c81);border-radius:var(--radius-lg);
+  padding:1.5rem;color:#fff;text-align:center;margin-top:1.5rem;
+}
+.export-section h3{font-family:var(--font-display);margin-bottom:.4rem}
+.export-section p{font-size:.8rem;opacity:.7;margin-bottom:1rem}
+.export-buttons{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+.btn-export{
+  padding:.6rem 1.2rem;border:1.5px solid rgba(255,255,255,.3);border-radius:var(--radius);
+  background:rgba(255,255,255,.1);color:#fff;font-family:var(--font);font-size:.8rem;
+  font-weight:600;cursor:pointer;transition:var(--transition);
+  display:inline-flex;align-items:center;gap:.4rem;
+}
+.btn-export:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.5)}
+
+/* Toast */
+.toast{
+  position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);
+  background:#1a2332;color:#fff;padding:.75rem 1.5rem;border-radius:var(--radius);
+  font-size:.82rem;font-weight:500;z-index:999;transition:transform .4s cubic-bezier(.4,0,.2,1);
+  box-shadow:var(--shadow-xl);
+}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* FOOTER */
+.footer{text-align:center;padding:2rem 1rem;color:var(--text-muted);font-size:.72rem}
+
+@media(max-width:600px){
+  .hero{padding:1.8rem 1rem}
+  .hero h1{font-size:1.4rem}
+  .main{padding:1rem}
+  .section-body{padding:1rem}
+  .likert-options{flex-wrap:wrap}
+  .likert-btn{flex:0 0 calc(50% - 3px)}
+  .form-row{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .export-buttons{flex-direction:column;align-items:stretch}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="hero-badge">📋 Needs Assessment 2026</div>
+  <h1>MGMP Bahasa Inggris SMK</h1>
+  <p>Kuesioner Analisis Kebutuhan — Isi dengan jujur untuk membantu menyusun program kerja yang tepat sasaran</p>
+</header>
+
+<!-- ===== PROGRESS ===== -->
+<div class="progress-container" id="progressBar">
+  <div class="progress-inner">
+    <div class="progress-steps" id="progressSteps"></div>
+    <div class="progress-label" id="progressLabel">Bagian 1/5</div>
+  </div>
+</div>
+
+<!-- ===== FORM ===== -->
+<div class="main" id="formArea">
+
+  <!-- STEP 1: PROFIL -->
+  <div class="step active" data-step="1">
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-tag">Bagian A — Section A</div>
+        <div class="section-title">Profil Guru</div>
+        <div class="section-subtitle">Teacher Profile — Data diri & informasi profesional</div>
+      </div>
+      <div class="section-body">
+        <div class="form-group">
+          <label class="form-label">Nama Lengkap <span class="form-label-en">Full Name</span></label>
+          <input class="form-input" id="nama" placeholder="Masukkan nama lengkap">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Asal Sekolah <span class="form-label-en">School</span></label>
+          <input class="form-input" id="sekolah" placeholder="Nama sekolah asal">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Jurusan/Kompetensi Keahlian yang Diajar <span class="form-label-en">Vocational Program Taught</span></label>
+          <input class="form-input" id="jurusan" placeholder="Contoh: TKJ, RPL, Akuntansi, Perhotelan">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Pendidikan Terakhir <span class="form-label-en">Education</span></label>
+            <select class="form-select" id="pendidikan">
+              <option value="">— Pilih —</option>
+              <option>S1</option><option>S2</option><option>S3</option><option>Lainnya</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Masa Mengajar <span class="form-label-en">Teaching Experience</span></label>
+            <select class="form-select" id="masaMengajar">
+              <option value="">— Pilih —</option>
+              <option>< 5 tahun</option><option>5–10 tahun</option><option>> 10 tahun</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Status Sertifikasi <span class="form-label-en">Certification</span></label>
+            <select class="form-select" id="sertifikasi">
+              <option value="">— Pilih —</option>
+              <option>Sudah</option><option>Belum</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email (belajar.id)</label>
+            <input class="form-input" id="email" type="email" placeholder="nama@belajar.id">
+          </div>
+        </div>
+        <div class="nav-buttons">
+          <div></div>
+          <button class="btn btn-primary" onclick="goStep(2)">Lanjut → Kompetensi</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: KOMPETENSI (LIKERT) -->
+  <div class="step" data-step="2">
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-tag">Bagian B — Section B</div>
+        <div class="section-title">Penilaian Diri Kompetensi</div>
+        <div class="section-subtitle">Self-Assessment of Competency — Pilih yang paling sesuai</div>
+      </div>
+      <div class="section-body">
+        <div class="likert-labels">
+          <span>Sangat Tidak Setuju</span><span>Sangat Setuju</span>
+        </div>
+        <div id="likertContainer"></div>
+        <div class="nav-buttons">
+          <button class="btn btn-secondary" onclick="goStep(1)">← Kembali</button>
+          <button class="btn btn-primary" onclick="goStep(3)">Lanjut → Tantangan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3: TANTANGAN -->
+  <div class="step" data-step="3">
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-tag">Bagian C — Section C</div>
+        <div class="section-title">Tantangan Mengajar</div>
+        <div class="section-subtitle">Teaching Challenges — Pilih semua yang Anda alami</div>
+      </div>
+      <div class="section-body">
+
+        <h4 style="font-size:.82rem;color:var(--primary);margin-bottom:.6rem">C1. Tantangan Pembelajaran <span style="font-weight:400;color:var(--text-muted);font-style:italic">Teaching Process</span></h4>
+        <div class="check-group" id="chkPembelajaran"></div>
+
+        <h4 style="font-size:.82rem;color:var(--primary);margin:1.25rem 0 .6rem">C2. Tantangan Asesmen <span style="font-weight:400;color:var(--text-muted);font-style:italic">Assessment</span></h4>
+        <div class="check-group" id="chkAsesmen"></div>
+
+        <h4 style="font-size:.82rem;color:var(--primary);margin:1.25rem 0 .6rem">C3. Tantangan Teknologi <span style="font-weight:400;color:var(--text-muted);font-style:italic">Technology</span></h4>
+        <div class="check-group" id="chkTeknologi"></div>
+
+        <div class="form-group" style="margin-top:1rem">
+          <label class="form-label">Tantangan lainnya <span class="form-label-en">Other challenges</span></label>
+          <textarea class="form-textarea" id="tantanganLain" rows="2" placeholder="Tuliskan tantangan lain yang Anda hadapi..."></textarea>
+        </div>
+
+        <div class="nav-buttons">
+          <button class="btn btn-secondary" onclick="goStep(2)">← Kembali</button>
+          <button class="btn btn-primary" onclick="goStep(4)">Lanjut → Pelatihan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4: KEBUTUHAN PELATIHAN -->
+  <div class="step" data-step="4">
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-tag">Bagian D — Section D</div>
+        <div class="section-title">Kebutuhan Pelatihan & Workshop</div>
+        <div class="section-subtitle">Training Needs — Pilih topik yang Anda butuhkan</div>
+      </div>
+      <div class="section-body">
+        <div class="check-group" id="chkPelatihan"></div>
+        <div class="form-group" style="margin-top:1rem">
+          <label class="form-label">Topik pelatihan lainnya <span class="form-label-en">Other topics</span></label>
+          <textarea class="form-textarea" id="pelatihanLain" rows="2" placeholder="Tuliskan topik lain yang Anda butuhkan..."></textarea>
+        </div>
+        <div class="nav-buttons">
+          <button class="btn btn-secondary" onclick="goStep(3)">← Kembali</button>
+          <button class="btn btn-primary" onclick="goStep(5)">Lanjut → Harapan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5: HARAPAN -->
+  <div class="step" data-step="5">
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-tag">Bagian E — Section E</div>
+        <div class="section-title">Harapan terhadap MGMP</div>
+        <div class="section-subtitle">Expectations — Preferensi kegiatan & saran</div>
+      </div>
+      <div class="section-body">
+
+        <h4 style="font-size:.82rem;color:var(--primary);margin-bottom:.6rem">E1. Format kegiatan <span style="font-weight:400;color:var(--text-muted);font-style:italic">Activity Format</span></h4>
+        <div class="check-group" id="chkFormat"></div>
+
+        <h4 style="font-size:.82rem;color:var(--primary);margin:1.25rem 0 .6rem">E2. Frekuensi pertemuan <span style="font-weight:400;color:var(--text-muted);font-style:italic">Meeting Frequency</span></h4>
+        <div class="radio-group" id="radioFrekuensi"></div>
+
+        <h4 style="font-size:.82rem;color:var(--primary);margin:1.25rem 0 .6rem">E3. Waktu pelaksanaan <span style="font-weight:400;color:var(--text-muted);font-style:italic">Schedule</span></h4>
+        <div class="check-group" id="chkWaktu"></div>
+
+        <h4 style="font-size:.82rem;color:var(--primary);margin:1.25rem 0 .6rem">E4. Harapan utama <span style="font-weight:400;color:var(--text-muted);font-style:italic">Main Expectations</span></h4>
+        <div class="check-group" id="chkHarapan"></div>
+
+        <h4 style="font-size:.82rem;color:var(--primary);margin:1.25rem 0 .6rem">E5. Kesediaan menjadi narasumber <span style="font-weight:400;color:var(--text-muted);font-style:italic">Willingness to Facilitate</span></h4>
+        <div class="radio-group" id="radioNarasumber"></div>
+
+        <div class="form-group" style="margin-top:1rem">
+          <label class="form-label">E6. Saran & masukan <span class="form-label-en">Suggestions & Feedback</span></label>
+          <textarea class="form-textarea" id="saran" rows="3" placeholder="Tuliskan saran untuk program MGMP ke depan..."></textarea>
+        </div>
+
+        <div class="nav-buttons">
+          <button class="btn btn-secondary" onclick="goStep(4)">← Kembali</button>
+          <button class="btn btn-accent" onclick="submitForm()" style="font-size:.95rem;padding:.85rem 2rem">
+            ✨ Lihat Hasil Analisis
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div class="main dashboard" id="dashboard">
+  <div class="section-card" style="border:none;box-shadow:none;background:transparent">
+    <div style="text-align:center;margin-bottom:1.5rem">
+      <div class="section-tag" style="font-size:.7rem">Hasil Analisis</div>
+      <div class="section-title" style="font-size:1.5rem">Dashboard Kebutuhan MGMP</div>
+      <div class="section-subtitle">Rekomendasi program kerja berdasarkan data kuesioner</div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-grid" id="statsGrid"></div>
+
+  <!-- Competency Radar -->
+  <div class="chart-card">
+    <div class="chart-title"><span class="chart-title-icon">📊</span> Profil Kompetensi Guru</div>
+    <div id="competencyChart"></div>
+  </div>
+
+  <!-- Top Challenges -->
+  <div class="chart-card">
+    <div class="chart-title"><span class="chart-title-icon">⚡</span> Tantangan Utama yang Dihadapi</div>
+    <div id="challengeChart"></div>
+  </div>
+
+  <!-- Training Priority -->
+  <div class="chart-card">
+    <div class="chart-title"><span class="chart-title-icon">🎯</span> Prioritas Kebutuhan Pelatihan</div>
+    <div id="trainingPriority"></div>
+  </div>
+
+  <!-- Recommendations -->
+  <div class="chart-card">
+    <div class="chart-title"><span class="chart-title-icon">🗺️</span> Rekomendasi Program Kerja MGMP</div>
+    <p style="font-size:.75rem;color:var(--text-muted);margin-bottom:1rem">Disusun dari yang paling mudah dilaksanakan (quick wins) hingga program jangka panjang</p>
+    <div id="recommendations"></div>
+  </div>
+
+  <!-- Export -->
+  <div class="export-section">
+    <h3>Simpan & Bagikan Hasil</h3>
+    <p>Download hasil analisis atau salin ringkasan untuk WAG</p>
+    <div class="export-buttons">
+      <button class="btn-export" onclick="copyForWA()">📱 Salin untuk WhatsApp</button>
+      <button class="btn-export" onclick="downloadJSON()">💾 Download Data (JSON)</button>
+      <button class="btn-export" onclick="downloadCSV()">📄 Download CSV</button>
+      <button class="btn-export" onclick="window.print()">🖨️ Cetak Hasil</button>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:1.5rem">
+    <button class="btn btn-secondary" onclick="resetForm()">📝 Isi Kuesioner Baru</button>
+  </div>
+</div>
+
+<div class="footer">
+  MGMP Bahasa Inggris SMK — Needs Assessment Tool © 2026<br>
+  <span style="font-size:.65rem">Built for collaborative teacher professional development</span>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ==================== DATA ====================
+const LIKERT_ITEMS = [
+  {id:'cp',text:'Saya memahami Capaian Pembelajaran (CP) Bahasa Inggris Fase F untuk SMK',en:'I understand the Learning Outcomes (CP) for English Phase F in SMK'},
+  {id:'tp',text:'Saya mampu menyusun Tujuan Pembelajaran (TP) dan Alur TP secara mandiri',en:'I can independently develop Learning Objectives and their sequences'},
+  {id:'modul',text:'Saya mampu menyusun modul ajar sesuai Kurikulum Merdeka',en:'I can develop teaching modules aligned with Kurikulum Merdeka'},
+  {id:'skills',text:'Saya percaya diri mengajar keempat keterampilan bahasa (LSRW)',en:'I am confident teaching all four language skills'},
+  {id:'esp',text:'Saya mampu mengintegrasikan English for Specific Purposes (ESP) sesuai jurusan',en:'I can integrate ESP according to vocational programs'},
+  {id:'asesmen',text:'Saya mampu merancang asesmen formatif dan sumatif yang bervariasi',en:'I can design varied formative and summative assessments'},
+  {id:'tech',text:'Saya mampu memanfaatkan teknologi digital dalam pembelajaran',en:'I can utilize digital technology in English teaching'},
+  {id:'tarl',text:'Saya memahami konsep Teaching at the Right Level (TaRL) dan diferensiasi',en:'I understand TaRL and differentiated instruction'},
+  {id:'proficiency',text:'Saya memiliki kemampuan Bahasa Inggris yang memadai (min. B2 CEFR)',en:'I have adequate English proficiency for teaching (min. B2 CEFR)'},
+  {id:'pengembangan',text:'Saya aktif mengembangkan diri melalui pelatihan & komunitas profesional',en:'I actively develop myself through training & professional communities'},
+];
+
+const CHALLENGES = {
+  pembelajaran: [
+    {id:'cp1',text:'Kemampuan Bahasa Inggris peserta didik sangat beragam',en:'Highly varied student proficiency levels'},
+    {id:'cp2',text:'Motivasi belajar Bahasa Inggris peserta didik rendah',en:'Low student motivation'},
+    {id:'cp3',text:'Kesulitan mengajar speaking/listening (keterbatasan sarana)',en:'Difficulty teaching speaking/listening'},
+    {id:'cp4',text:'Sulit mengaitkan materi dengan konteks kejuruan (ESP)',en:'Difficulty connecting with vocational contexts'},
+    {id:'cp5',text:'Kurangnya bahan ajar relevan untuk SMK',en:'Lack of relevant SMK teaching materials'},
+    {id:'cp6',text:'Jumlah jam pelajaran terbatas',en:'Limited teaching hours'},
+    {id:'cp7',text:'Ukuran kelas terlalu besar',en:'Class sizes too large'},
+  ],
+  asesmen: [
+    {id:'ca1',text:'Kesulitan menyusun soal HOTS',en:'Difficulty creating HOTS questions'},
+    {id:'ca2',text:'Belum memahami asesmen Kurikulum Merdeka',en:'Not understanding Kurikulum Merdeka assessment'},
+    {id:'ca3',text:'Kesulitan melaksanakan asesmen autentik/kinerja',en:'Difficulty with authentic assessment'},
+    {id:'ca4',text:'Belum mampu menggunakan platform asesmen digital',en:'Unable to use digital assessment platforms'},
+    {id:'ca5',text:'Kesulitan melakukan asesmen diagnostik awal',en:'Difficulty with diagnostic assessment'},
+  ],
+  teknologi: [
+    {id:'ct1',text:'Keterbatasan akses internet di sekolah',en:'Limited internet access'},
+    {id:'ct2',text:'Kurang terampil menggunakan LMS',en:'Lack of LMS skills'},
+    {id:'ct3',text:'Belum mampu membuat media pembelajaran interaktif',en:'Unable to create interactive media'},
+    {id:'ct4',text:'Belum familiar dengan AI tools untuk pembelajaran',en:'Not familiar with AI tools'},
+    {id:'ct5',text:'Kurangnya perangkat (laptop/komputer)',en:'Insufficient devices'},
+  ]
+};
+
+const TRAINING_TOPICS = [
+  {id:'t1',text:'Penyusunan CP, TP, dan ATP Bahasa Inggris SMK',en:'Developing CP, TP, ATP for SMK English',cat:'kurikulum'},
+  {id:'t2',text:'Penyusunan Modul Ajar Kurikulum Merdeka',en:'Developing Kurikulum Merdeka Teaching Modules',cat:'kurikulum'},
+  {id:'t3',text:'English for Specific Purposes (ESP) untuk berbagai jurusan',en:'ESP for various vocational programs',cat:'pedagogik'},
+  {id:'t4',text:'Strategi Teaching at the Right Level (TaRL)',en:'TaRL strategies',cat:'pedagogik'},
+  {id:'t5',text:'Asesmen formatif, sumatif & diagnostik',en:'Formative, summative & diagnostic assessment',cat:'asesmen'},
+  {id:'t6',text:'Pemanfaatan AI dalam pembelajaran Bahasa Inggris',en:'Utilizing AI in English teaching',cat:'teknologi'},
+  {id:'t7',text:'Pembuatan media pembelajaran digital & interaktif',en:'Creating digital & interactive media',cat:'teknologi'},
+  {id:'t8',text:'Peningkatan English proficiency guru (speaking/writing)',en:'Improving teacher English proficiency',cat:'proficiency'},
+  {id:'t9',text:'Penelitian Tindakan Kelas (PTK) Bahasa Inggris',en:'Classroom Action Research in English',cat:'profesional'},
+  {id:'t10',text:'Project-Based Learning (PjBL) dalam Bahasa Inggris SMK',en:'PjBL in SMK English',cat:'pedagogik'},
+  {id:'t11',text:'Lesson Study & Peer Teaching',en:'Lesson Study & Peer Teaching',cat:'profesional'},
+  {id:'t12',text:'Persiapan siswa menghadapi Asesmen Nasional',en:'Preparing students for National Assessment',cat:'asesmen'},
+];
+
+const FORMAT_OPTIONS = [
+  {id:'f1',text:'Workshop/pelatihan praktis',en:'Practical workshops'},
+  {id:'f2',text:'Seminar dengan narasumber ahli',en:'Expert seminars'},
+  {id:'f3',text:'Lesson study & observasi kelas',en:'Lesson study'},
+  {id:'f4',text:'Diskusi studi kasus',en:'Case study discussion'},
+  {id:'f5',text:'Peer teaching / microteaching',en:'Peer teaching'},
+  {id:'f6',text:'Belajar mandiri (modul daring)',en:'Self-paced online'},
+  {id:'f7',text:'Kunjungan sekolah/industri',en:'Benchmarking visits'},
+];
+
+const FREQ_OPTIONS = [
+  {id:'fr1',text:'1x per bulan',en:'Once a month'},
+  {id:'fr2',text:'2x per bulan',en:'Twice a month'},
+  {id:'fr3',text:'1x per triwulan',en:'Once a quarter'},
+  {id:'fr4',text:'Sesuai kebutuhan (fleksibel)',en:'As needed'},
+];
+
+const WAKTU_OPTIONS = [
+  {id:'w1',text:'Hari kerja (setelah mengajar)',en:'Weekdays after school'},
+  {id:'w2',text:'Hari Sabtu',en:'Saturday'},
+  {id:'w3',text:'Hari libur sekolah',en:'School holidays'},
+  {id:'w4',text:'Daring/online',en:'Online'},
+  {id:'w5',text:'Blended (luring & daring)',en:'Blended'},
+];
+
+const HARAPAN_OPTIONS = [
+  {id:'h1',text:'Peningkatan kompetensi pedagogik',en:'Improved pedagogical competency'},
+  {id:'h2',text:'Peningkatan kemampuan Bahasa Inggris',en:'Improved English proficiency'},
+  {id:'h3',text:'Berbagi pengalaman & praktik baik',en:'Sharing best practices'},
+  {id:'h4',text:'Mendapatkan bahan ajar siap pakai',en:'Ready-to-use materials'},
+  {id:'h5',text:'Jejaring profesional antar guru',en:'Professional networking'},
+  {id:'h6',text:'Dukungan kenaikan pangkat/karier',en:'Career advancement support'},
+  {id:'h7',text:'Persiapan PPG/sertifikasi',en:'PPG/certification preparation'},
+];
+
+const NARASUMBER_OPTIONS = [
+  {id:'n1',text:'Ya, bersedia',en:'Yes'},
+  {id:'n2',text:'Belum, tapi bersedia jika dilatih',en:'Not yet, but willing if trained'},
+  {id:'n3',text:'Tidak untuk saat ini',en:'Not at this time'},
+];
+
+// ==================== STATE ====================
+let currentStep = 1;
+const totalSteps = 5;
+const state = { likert: {}, challenges: new Set(), training: new Set(), format: new Set(), waktu: new Set(), harapan: new Set(), frekuensi: '', narasumber: '' };
+
+// ==================== INIT ====================
+function init() {
+  renderProgress();
+  renderLikert();
+  renderCheckGroup('chkPembelajaran', CHALLENGES.pembelajaran, 'challenges');
+  renderCheckGroup('chkAsesmen', CHALLENGES.asesmen, 'challenges');
+  renderCheckGroup('chkTeknologi', CHALLENGES.teknologi, 'challenges');
+  renderCheckGroup('chkPelatihan', TRAINING_TOPICS, 'training');
+  renderCheckGroup('chkFormat', FORMAT_OPTIONS, 'format');
+  renderCheckGroup('chkWaktu', WAKTU_OPTIONS, 'waktu');
+  renderCheckGroup('chkHarapan', HARAPAN_OPTIONS, 'harapan');
+  renderRadioGroup('radioFrekuensi', FREQ_OPTIONS, 'frekuensi');
+  renderRadioGroup('radioNarasumber', NARASUMBER_OPTIONS, 'narasumber');
+}
+
+// ==================== RENDER ====================
+function renderProgress() {
+  const c = document.getElementById('progressSteps');
+  c.innerHTML = '';
+  for (let i = 1; i <= totalSteps; i++) {
+    const d = document.createElement('div');
+    d.className = 'progress-step' + (i < currentStep ? ' done' : i === currentStep ? ' active' : '');
+    c.appendChild(d);
+  }
+  document.getElementById('progressLabel').textContent = `Bagian ${currentStep}/${totalSteps}`;
+}
+
+function renderLikert() {
+  const c = document.getElementById('likertContainer');
+  const labels = ['STS','TS','S','SS'];
+  c.innerHTML = LIKERT_ITEMS.map(item => `
+    <div class="likert-item">
+      <div class="likert-text">${item.text}</div>
+      <div class="likert-text-en">${item.en}</div>
+      <div class="likert-options">
+        ${labels.map((l, i) => `<button class="likert-btn ${state.likert[item.id]===(i+1)?'selected':''}" onclick="setLikert('${item.id}',${i+1},this)">${l}<br><span style="font-size:.6rem;font-weight:400">(${i+1})</span></button>`).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderCheckGroup(containerId, items, stateKey) {
+  const c = document.getElementById(containerId);
+  c.innerHTML = items.map(item => `
+    <div class="check-item" onclick="toggleCheck(this,'${item.id}','${stateKey}')">
+      <div class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+      <div>
+        <div class="check-text">${item.text}</div>
+        <div class="check-text-en">${item.en}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderRadioGroup(containerId, items, stateKey) {
+  const c = document.getElementById(containerId);
+  c.innerHTML = items.map(item => `
+    <div class="radio-item" onclick="setRadio(this,'${item.id}','${stateKey}','${containerId}')">
+      <div class="radio-dot"></div>
+      <div>
+        <div class="check-text">${item.text}</div>
+        <div class="check-text-en">${item.en}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ==================== INTERACTIONS ====================
+function setLikert(id, val, btn) {
+  state.likert[id] = val;
+  btn.parentElement.querySelectorAll('.likert-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function toggleCheck(el, id, key) {
+  el.classList.toggle('checked');
+  state[key].has(id) ? state[key].delete(id) : state[key].add(id);
+}
+
+function setRadio(el, id, key, containerId) {
+  document.getElementById(containerId).querySelectorAll('.radio-item').forEach(r => r.classList.remove('selected'));
+  el.classList.add('selected');
+  state[key] = id;
+}
+
+function goStep(n) {
+  currentStep = n;
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.querySelector(`[data-step="${n}"]`).classList.add('active');
+  renderProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ==================== SUBMIT & ANALYZE ====================
+function submitForm() {
+  document.getElementById('formArea').style.display = 'none';
+  document.getElementById('progressBar').style.display = 'none';
+  const dash = document.getElementById('dashboard');
+  dash.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  renderDashboard();
+}
+
+function renderDashboard() {
+  // Stats
+  const likertValues = Object.values(state.likert);
+  const avgComp = likertValues.length ? (likertValues.reduce((a,b)=>a+b,0)/likertValues.length).toFixed(1) : '—';
+  const totalChallenges = state.challenges.size;
+  const totalTraining = state.training.size;
+  const lowItems = likertValues.filter(v => v <= 2).length;
+
+  document.getElementById('statsGrid').innerHTML = `
+    <div class="stat-card"><div class="stat-value">${avgComp}</div><div class="stat-label">Rata-rata Kompetensi</div></div>
+    <div class="stat-card"><div class="stat-value">${totalChallenges}</div><div class="stat-label">Tantangan Teridentifikasi</div></div>
+    <div class="stat-card"><div class="stat-value">${totalTraining}</div><div class="stat-label">Topik Pelatihan Dipilih</div></div>
+    <div class="stat-card"><div class="stat-value" style="color:${lowItems>3?'var(--danger)':'var(--success)'}">${lowItems}</div><div class="stat-label">Area Perlu Perhatian</div></div>
+  `;
+
+  // Competency chart
+  const compChart = document.getElementById('competencyChart');
+  const colors = ['#2d9f6f','#2d9f6f','#e8913a','#d64545'];
+  compChart.innerHTML = LIKERT_ITEMS.map(item => {
+    const v = state.likert[item.id] || 0;
+    const pct = (v / 4) * 100;
+    const color = v >= 3 ? '#2d9f6f' : v === 2 ? '#e8913a' : v === 1 ? '#d64545' : '#ccc';
+    const shortText = item.text.replace(/^Saya (mampu |memahami |memiliki |percaya diri |aktif )?/,'').substring(0,50);
+    return `<div class="hbar">
+      <div class="hbar-label"><span>${shortText}${item.text.length>50?'…':''}</span><span>${v}/4</span></div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:${pct}%;background:${color}"></div></div>
+    </div>`;
+  }).join('');
+
+  // Challenges chart
+  const allChallengeItems = [...CHALLENGES.pembelajaran,...CHALLENGES.asesmen,...CHALLENGES.teknologi];
+  const selectedChallenges = allChallengeItems.filter(c => state.challenges.has(c.id));
+  const chChart = document.getElementById('challengeChart');
+  if (selectedChallenges.length === 0) {
+    chChart.innerHTML = '<p style="color:var(--text-muted);font-size:.82rem;text-align:center;padding:1rem">Tidak ada tantangan yang dipilih</p>';
+  } else {
+    chChart.innerHTML = selectedChallenges.map(c => `
+      <div class="hbar">
+        <div class="hbar-label"><span>${c.text}</span></div>
+        <div class="hbar-track"><div class="hbar-fill" style="width:100%;background:var(--accent)"></div></div>
+      </div>
+    `).join('');
+  }
+
+  // Training Priority
+  const selectedTraining = TRAINING_TOPICS.filter(t => state.training.has(t.id));
+  const tPriority = document.getElementById('trainingPriority');
+  if (selectedTraining.length === 0) {
+    tPriority.innerHTML = '<p style="color:var(--text-muted);font-size:.82rem;text-align:center;padding:1rem">Tidak ada topik yang dipilih</p>';
+  } else {
+    // Score them: training selected = base. Boost if related likert is low.
+    const scored = selectedTraining.map(t => {
+      let score = 10;
+      // Boost based on weak competencies
+      if (t.cat === 'kurikulum' && ((state.likert.cp||3)<=2 || (state.likert.tp||3)<=2 || (state.likert.modul||3)<=2)) score += 5;
+      if (t.cat === 'pedagogik' && ((state.likert.esp||3)<=2 || (state.likert.tarl||3)<=2 || (state.likert.skills||3)<=2)) score += 5;
+      if (t.cat === 'asesmen' && (state.likert.asesmen||3)<=2) score += 5;
+      if (t.cat === 'teknologi' && (state.likert.tech||3)<=2) score += 5;
+      if (t.cat === 'proficiency' && (state.likert.proficiency||3)<=2) score += 5;
+      if (t.cat === 'profesional' && (state.likert.pengembangan||3)<=2) score += 3;
+      // Boost if related challenges selected
+      if (t.cat === 'teknologi' && [...state.challenges].some(c=>c.startsWith('ct'))) score += 3;
+      if (t.cat === 'asesmen' && [...state.challenges].some(c=>c.startsWith('ca'))) score += 3;
+      if (t.cat === 'pedagogik' && [...state.challenges].some(c=>['cp4','cp5'].includes(c))) score += 3;
+      return { ...t, score };
+    }).sort((a,b) => b.score - a.score);
+
+    tPriority.innerHTML = '<div class="priority-list">' + scored.map(t =>
+      `<div class="priority-item" style="animation-delay:${scored.indexOf(t)*0.08}s">
+        <div class="priority-text">${t.text}<br><span style="font-size:.68rem;color:var(--text-muted);font-style:italic">${t.en}</span></div>
+        <div class="priority-score">⬆ ${t.score}</div>
+      </div>`
+    ).join('') + '</div>';
+  }
+
+  // Recommendations — from easy to hard
+  const recs = generateRecommendations();
+  document.getElementById('recommendations').innerHTML = recs.map(r => `
+    <div class="rec-card">
+      <div class="rec-tag ${r.level}">${r.levelLabel}</div>
+      <h4>${r.title}</h4>
+      <p>${r.desc}</p>
+    </div>
+  `).join('');
+}
+
+function generateRecommendations() {
+  const recs = [];
+  const lowComp = LIKERT_ITEMS.filter(i => (state.likert[i.id]||0) <= 2);
+  const hasTechChallenge = [...state.challenges].some(c => c.startsWith('ct'));
+  const hasAssessChallenge = [...state.challenges].some(c => c.startsWith('ca'));
+  const hasESPChallenge = state.challenges.has('cp4');
+
+  // Quick wins (easy)
+  recs.push({
+    level:'easy', levelLabel:'Quick Win — Mudah',
+    title:'📱 Buat WAG Berbagi Bahan Ajar & Best Practices',
+    desc:'Mulai dengan membuat grup WhatsApp khusus berbagi modul ajar, soal, dan media. Ini tidak butuh biaya dan bisa langsung dilakukan. Setiap anggota giliran berbagi 1 resource per minggu.'
+  });
+
+  recs.push({
+    level:'easy', levelLabel:'Quick Win — Mudah',
+    title:'👥 Peer Teaching Bulanan Antar Anggota',
+    desc:'Adakan sesi peer teaching 1x/bulan di mana 1-2 guru mendemonstrasikan teknik mengajar terbaiknya. Tidak perlu narasumber luar — manfaatkan keahlian internal anggota MGMP.'
+  });
+
+  if (lowComp.some(i => ['cp','tp','modul'].includes(i.id))) {
+    recs.push({
+      level:'easy', levelLabel:'Quick Win — Mudah',
+      title:'📖 Workshop Bedah CP & Penyusunan ATP Bahasa Inggris SMK',
+      desc:'Kompetensi kurikulum teridentifikasi masih perlu ditingkatkan. Adakan workshop internal 1 hari untuk bedah CP Fase F dan praktik menyusun ATP bersama.'
+    });
+  }
+
+  if (state.training.has('t11')) {
+    recs.push({
+      level:'easy', levelLabel:'Quick Win — Mudah',
+      title:'🔍 Lesson Study Sederhana Antar Sekolah',
+      desc:'Mulai lesson study dengan format Plan-Do-See. Pilih 1 guru model, yang lain mengobservasi. Refleksi bersama setelahnya. Bisa dilakukan bergantian setiap 2 bulan.'
+    });
+  }
+
+  // Medium
+  if (hasESPChallenge || state.training.has('t3')) {
+    recs.push({
+      level:'medium', levelLabel:'Menengah — Perlu Persiapan',
+      title:'🏭 Workshop ESP: Menyusun Materi Sesuai Jurusan',
+      desc:'Bagi anggota dalam kelompok sesuai jurusan (TKJ, Akuntansi, Perhotelan, dll). Setiap kelompok menyusun bank materi ESP yang bisa dipakai bersama. Libatkan guru produktif sebagai validator konteks industri.'
+    });
+  }
+
+  if (hasTechChallenge || state.training.has('t6') || state.training.has('t7')) {
+    recs.push({
+      level:'medium', levelLabel:'Menengah — Perlu Persiapan',
+      title:'💻 Pelatihan Teknologi & AI untuk Pembelajaran',
+      desc:'Adakan pelatihan bertahap: (1) pengenalan LMS, (2) pembuatan media interaktif, (3) pemanfaatan AI. Undang narasumber dari LPMP atau fasilitator daerah yang sudah terlatih.'
+    });
+  }
+
+  if (hasAssessChallenge || state.training.has('t5')) {
+    recs.push({
+      level:'medium', levelLabel:'Menengah — Perlu Persiapan',
+      title:'📝 Workshop Asesmen Kurikulum Merdeka',
+      desc:'Fokus pada praktik menyusun asesmen diagnostik, formatif, dan sumatif. Sertakan praktik membuat soal HOTS dan rubrik penilaian kinerja speaking/writing.'
+    });
+  }
+
+  if (state.training.has('t8') || (state.likert.proficiency||3) <= 2) {
+    recs.push({
+      level:'medium', levelLabel:'Menengah — Perlu Persiapan',
+      title:'🗣️ English Club Guru — Tingkatkan Proficiency',
+      desc:'Buat sesi English practice rutin 2x/bulan khusus guru. Bisa berupa discussion club, presentation practice, atau collaborative writing. Target: meningkatkan confidence dan fluency.'
+    });
+  }
+
+  // Long-term (hard)
+  recs.push({
+    level:'hard', levelLabel:'Jangka Panjang — Program Berkelanjutan',
+    title:'📚 Bank Soal & Modul Ajar Digital Bersama',
+    desc:'Proyek kolaboratif jangka panjang: setiap anggota berkontribusi minimal 1 modul ajar dan 1 paket soal per semester. Kumpulkan dalam Google Drive/platform bersama sebagai aset MGMP.'
+  });
+
+  if (state.training.has('t9')) {
+    recs.push({
+      level:'hard', levelLabel:'Jangka Panjang — Program Berkelanjutan',
+      title:'🔬 Pendampingan Penelitian Tindakan Kelas (PTK)',
+      desc:'Fasilitasi anggota untuk melakukan PTK secara berkelompok. Mulai dari identifikasi masalah, desain penelitian, hingga penulisan laporan. Hasil PTK bisa mendukung kenaikan pangkat.'
+    });
+  }
+
+  recs.push({
+    level:'hard', levelLabel:'Jangka Panjang — Program Berkelanjutan',
+    title:'🤝 Kemitraan dengan DUDI & Perguruan Tinggi',
+    desc:'Bangun kerjasama dengan Dunia Usaha/Industri untuk validasi materi ESP dan guest lecture, serta dengan universitas untuk pendampingan akademik dan akses jurnal/riset terbaru.'
+  });
+
+  return recs;
+}
+
+// ==================== EXPORT ====================
+function collectAllData() {
+  return {
+    timestamp: new Date().toISOString(),
+    profil: {
+      nama: document.getElementById('nama').value,
+      sekolah: document.getElementById('sekolah').value,
+      jurusan: document.getElementById('jurusan').value,
+      pendidikan: document.getElementById('pendidikan').value,
+      masaMengajar: document.getElementById('masaMengajar').value,
+      sertifikasi: document.getElementById('sertifikasi').value,
+      email: document.getElementById('email').value,
+    },
+    kompetensi: { ...state.likert },
+    tantangan: [...state.challenges],
+    kebutuhanPelatihan: [...state.training],
+    formatKegiatan: [...state.format],
+    frekuensi: state.frekuensi,
+    waktuPelaksanaan: [...state.waktu],
+    harapan: [...state.harapan],
+    kesediaanNarasumber: state.narasumber,
+    saran: document.getElementById('saran')?.value || '',
+    tantanganLain: document.getElementById('tantanganLain')?.value || '',
+    pelatihanLain: document.getElementById('pelatihanLain')?.value || '',
+  };
+}
+
+function copyForWA() {
+  const d = collectAllData();
+  const likertValues = Object.values(d.kompetensi);
+  const avg = likertValues.length ? (likertValues.reduce((a,b)=>a+b,0)/likertValues.length).toFixed(1) : '-';
+  const allCh = [...CHALLENGES.pembelajaran,...CHALLENGES.asesmen,...CHALLENGES.teknologi];
+  const chNames = d.tantangan.map(id => allCh.find(c=>c.id===id)?.text || id);
+  const trNames = d.kebutuhanPelatihan.map(id => TRAINING_TOPICS.find(t=>t.id===id)?.text || id);
+
+  const text = `📋 *HASIL KUESIONER ANALISIS KEBUTUHAN*
+*MGMP Bahasa Inggris SMK*
+━━━━━━━━━━━━━━━━━━
+
+👤 *Responden:* ${d.profil.nama || '-'}
+🏫 *Sekolah:* ${d.profil.sekolah || '-'}
+📧 *Email:* ${d.profil.email || '-'}
+
+📊 *Rata-rata Kompetensi:* ${avg}/4
+⚡ *Jumlah Tantangan:* ${d.tantangan.length}
+🎯 *Topik Pelatihan Dipilih:* ${d.kebutuhanPelatihan.length}
+
+${chNames.length ? `⚡ *Tantangan Utama:*\n${chNames.map(c=>'  • '+c).join('\n')}` : ''}
+
+${trNames.length ? `🎯 *Kebutuhan Pelatihan:*\n${trNames.map(t=>'  • '+t).join('\n')}` : ''}
+
+${d.saran ? `💬 *Saran:* ${d.saran}` : ''}
+
+━━━━━━━━━━━━━━━━━━
+_Diisi melalui MGMP Needs Assessment Tool_`;
+
+  navigator.clipboard.writeText(text).then(() => showToast('📋 Tersalin! Paste ke WAG MGMP Anda'));
+}
+
+function downloadJSON() {
+  const d = collectAllData();
+  const blob = new Blob([JSON.stringify(d, null, 2)], { type: 'application/json' });
+  downloadBlob(blob, `kuesioner-mgmp-${d.profil.nama?.replace(/\s+/g,'-')||'data'}-${new Date().toISOString().slice(0,10)}.json`);
+  showToast('💾 File JSON berhasil didownload');
+}
+
+function downloadCSV() {
+  const d = collectAllData();
+  const headers = ['Nama','Sekolah','Jurusan','Pendidikan','Masa Mengajar','Sertifikasi','Email',
+    ...LIKERT_ITEMS.map(i=>'Kompetensi: '+i.text.substring(0,40)),
+    'Tantangan','Kebutuhan Pelatihan','Format','Frekuensi','Waktu','Harapan','Narasumber','Saran'];
+  const allCh = [...CHALLENGES.pembelajaran,...CHALLENGES.asesmen,...CHALLENGES.teknologi];
+  const row = [
+    d.profil.nama, d.profil.sekolah, d.profil.jurusan, d.profil.pendidikan,
+    d.profil.masaMengajar, d.profil.sertifikasi, d.profil.email,
+    ...LIKERT_ITEMS.map(i => d.kompetensi[i.id] || ''),
+    d.tantangan.map(id => allCh.find(c=>c.id===id)?.text||id).join('; '),
+    d.kebutuhanPelatihan.map(id => TRAINING_TOPICS.find(t=>t.id===id)?.text||id).join('; '),
+    d.formatKegiatan.map(id => FORMAT_OPTIONS.find(f=>f.id===id)?.text||id).join('; '),
+    FREQ_OPTIONS.find(f=>f.id===d.frekuensi)?.text || '',
+    d.waktuPelaksanaan.map(id => WAKTU_OPTIONS.find(w=>w.id===id)?.text||id).join('; '),
+    d.harapan.map(id => HARAPAN_OPTIONS.find(h=>h.id===id)?.text||id).join('; '),
+    NARASUMBER_OPTIONS.find(n=>n.id===d.kesediaanNarasumber)?.text || '',
+    d.saran
+  ];
+  const csvContent = [headers, row].map(r => r.map(v => `"${(v+'').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob(['\uFEFF'+csvContent], { type: 'text/csv;charset=utf-8' });
+  downloadBlob(blob, `kuesioner-mgmp-${new Date().toISOString().slice(0,10)}.csv`);
+  showToast('📄 File CSV berhasil didownload');
+}
+
+function downloadBlob(blob, name) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function resetForm() {
+  location.reload();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ==================== BOOT ====================
+init();
+</script>
+</body>
+</html>
