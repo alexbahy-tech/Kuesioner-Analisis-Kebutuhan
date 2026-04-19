@@ -184,6 +184,20 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:
 .btn-export{padding:.55rem 1rem;border:1.5px solid rgba(255,255,255,.3);border-radius:var(--radius);background:rgba(255,255,255,.1);color:#fff;font-family:var(--font);font-size:.75rem;font-weight:600;cursor:pointer;transition:var(--transition);display:inline-flex;align-items:center;gap:.35rem}
 .btn-export:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.5)}
 
+/* === ADMIN PANEL === */
+.admin-bar{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:.7rem 1rem;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.admin-bar.logged-in{border-color:var(--success);background:var(--success-bg)}
+.admin-input{flex:1;min-width:120px;padding:.45rem .7rem;border:1.5px solid var(--border);border-radius:8px;font-family:var(--font);font-size:.78rem}
+.admin-input:focus{outline:none;border-color:var(--primary)}
+.admin-status{font-size:.72rem;font-weight:600;display:flex;align-items:center;gap:.3rem}
+.admin-status.locked{color:var(--text-muted)}
+.admin-status.unlocked{color:var(--success)}
+.btn-admin{padding:.4rem .85rem;border:none;border-radius:8px;font-family:var(--font);font-size:.72rem;font-weight:600;cursor:pointer;transition:var(--transition)}
+.btn-admin-login{background:var(--primary);color:#fff}
+.btn-admin-login:hover{filter:brightness(1.1)}
+.btn-admin-logout{background:var(--border);color:var(--text-secondary)}
+.btn-admin-logout:hover{background:var(--danger-bg);color:var(--danger)}
+
 /* === EMPTY STATE === */
 .empty-state{text-align:center;padding:3rem 1.5rem}
 .empty-icon{font-size:3rem;margin-bottom:.75rem}
@@ -441,6 +455,57 @@ function getResponses(){try{return JSON.parse(localStorage.getItem('mgmp_respons
 function saveResponses(r){localStorage.setItem('mgmp_responses',JSON.stringify(r))}
 function updateBadge(){document.getElementById('respCount').textContent=getResponses().length}
 
+// === PRIVACY MASKING ===
+function maskName(name){
+  if(!name)return 'Anonim';
+  const parts=name.trim().split(/\s+/);
+  return parts.map(p=>{
+    if(p.length<=1)return p[0]+'*';
+    if(p.length<=3)return p[0]+'*'.repeat(p.length-1);
+    return p[0]+p[1]+'*'.repeat(p.length-2);
+  }).join(' ');
+}
+function maskEmail(email){
+  if(!email)return '—';
+  const [user,domain]=email.split('@');
+  if(!domain)return '***@***';
+  const maskedUser=user.length<=2?user[0]+'***':user.slice(0,2)+'*'.repeat(Math.min(user.length-2,5));
+  return maskedUser+'@'+domain;
+}
+function maskSchool(school){
+  if(!school)return '—';
+  const s=school.trim();
+  if(s.length<=4)return s[0]+'*'.repeat(s.length-1);
+  return s.slice(0,4)+'*'.repeat(Math.min(s.length-4,8));
+}
+function anonLabel(index){return 'Responden '+(index+1)}
+
+// === ADMIN MODE ===
+const ADMIN_PIN='mgmp2026';
+let isAdmin=false;
+function loginAdmin(){
+  const input=document.getElementById('adminPinInput');
+  if(!input)return;
+  if(input.value===ADMIN_PIN){isAdmin=true;showToast('🔓 Mode Admin aktif — identitas responden ditampilkan');renderResults()}
+  else{showToast('⚠️ Password salah');input.value=''}
+}
+function logoutAdmin(){isAdmin=false;showToast('🔒 Mode Admin dinonaktifkan');renderResults()}
+function renderAdminBar(){
+  if(isAdmin){
+    return `<div class="admin-bar logged-in">
+      <div class="admin-status unlocked">🔓 Mode Admin — Identitas terlihat</div>
+      <div style="flex:1"></div>
+      <button class="btn-admin btn-admin-logout" onclick="logoutAdmin()">Keluar Admin</button>
+    </div>`;
+  }
+  return `<div class="admin-bar">
+    <div class="admin-status locked">🔒 Identitas responden disamarkan</div>
+    <div style="flex:1"></div>
+    <input type="password" class="admin-input" id="adminPinInput" placeholder="Password admin" onkeydown="if(event.key==='Enter')loginAdmin()" style="max-width:140px">
+    <button class="btn-admin btn-admin-login" onclick="loginAdmin()">Masuk</button>
+  </div>`;
+}
+
 // ==================== INIT ====================
 function init(){
   renderProgress();renderLikert();
@@ -548,6 +613,8 @@ function renderResults(){
   }
 
   let html='';
+  // Admin bar
+  html+=renderAdminBar();
   // Stats
   html+=`<div class="stats-grid">
     <div class="stat-card"><div class="stat-value">${N}</div><div class="stat-label">Responden</div></div>
@@ -591,10 +658,10 @@ function renderResults(){
     ${topHarapan.filter(h=>h.count).map(h=>`<div class="hbar"><div class="hbar-label"><span>${h.text}</span><span>${h.pct}%</span></div><div class="hbar-track"><div class="hbar-fill" style="width:${h.pct}%;background:var(--success)"></div></div></div>`).join('')}</div>`;
 
   // Saran
-  const saranList=R.map(r=>({nama:r.profil.nama,saran:r.saran})).filter(s=>s.saran.trim());
+  const saranList=R.map((r,i)=>({nama:isAdmin?r.profil.nama:anonLabel(i),saran:r.saran})).filter(s=>s.saran.trim());
   if(saranList.length){
     html+=`<div class="chart-card"><div class="chart-title"><span class="chart-title-icon">💬</span> Saran & Masukan</div>
-      ${saranList.map(s=>`<div style="background:var(--surface-alt);border-radius:8px;padding:.6rem .8rem;margin-bottom:.4rem;border-left:3px solid var(--primary-light)"><div style="font-size:.68rem;font-weight:700;color:var(--primary)">${s.nama}</div><div style="font-size:.72rem;color:var(--text-secondary)">${s.saran}</div></div>`).join('')}</div>`;
+      ${saranList.map(s=>`<div style="background:var(--surface-alt);border-radius:8px;padding:.6rem .8rem;margin-bottom:.4rem;border-left:3px solid var(--primary-light)"><div style="font-size:.68rem;font-weight:700;color:var(--primary)">${isAdmin?'':'🔒 '}${s.nama}</div><div style="font-size:.72rem;color:var(--text-secondary)">${s.saran}</div></div>`).join('')}</div>`;
   }
 
   // Recommendations
@@ -604,20 +671,20 @@ function renderResults(){
 
   // Respondent table
   html+=`<div class="chart-card"><div class="chart-title"><span class="chart-title-icon">📋</span> Data Responden (${N})</div>
-    <div class="resp-table-wrap"><table class="resp-table"><thead><tr><th>No</th><th>Nama</th><th>Sekolah</th><th>Pend.</th><th>Pengalaman</th><th>Sertifikasi</th><th>Komp.</th><th>Tanggal</th><th></th></tr></thead>
-    <tbody>${R.map((r,i)=>{const vals=Object.values(r.kompetensi);const avg=vals.length?(vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1):'—';const tgl=new Date(r.timestamp).toLocaleDateString('id-ID',{day:'2-digit',month:'short'});return `<tr><td>${i+1}</td><td><strong>${r.profil.nama}</strong></td><td>${r.profil.sekolah||'—'}</td><td>${r.profil.pendidikan||'—'}</td><td>${r.profil.masaMengajar||'—'}</td><td>${r.profil.sertifikasi||'—'}</td><td style="color:${avg>=3?'var(--success)':avg>=2?'var(--warning)':'var(--danger)'}"><strong>${avg}</strong></td><td>${tgl}</td><td><button class="resp-delete" onclick="deleteResp(${r.id})">🗑️</button></td></tr>`}).join('')}</tbody></table></div></div>`;
+    <div class="resp-table-wrap"><table class="resp-table"><thead><tr><th>No</th><th>${isAdmin?'Nama':'Responden'}</th><th>${isAdmin?'Sekolah':''}</th><th>Pend.</th><th>Pengalaman</th><th>Sertifikasi</th><th>Komp.</th><th>Tanggal</th>${isAdmin?'<th></th>':''}</tr></thead>
+    <tbody>${R.map((r,i)=>{const vals=Object.values(r.kompetensi);const avg=vals.length?(vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1):'—';const tgl=new Date(r.timestamp).toLocaleDateString('id-ID',{day:'2-digit',month:'short'});const dispName=isAdmin?r.profil.nama:anonLabel(i);const dispSchool=isAdmin?(r.profil.sekolah||'—'):'';return `<tr><td>${i+1}</td><td><strong>${dispName}</strong></td>${isAdmin?`<td>${dispSchool}</td>`:''}<td>${r.profil.pendidikan||'—'}</td><td>${r.profil.masaMengajar||'—'}</td><td>${r.profil.sertifikasi||'—'}</td><td style="color:${avg>=3?'var(--success)':avg>=2?'var(--warning)':'var(--danger)'}"><strong>${avg}</strong></td><td>${tgl}</td>${isAdmin?`<td><button class="resp-delete" onclick="deleteResp(${r.id})">🗑️</button></td>`:''}</tr>`}).join('')}</tbody></table></div></div>`;
 
   // Export
   html+=`<div class="export-section"><h3>Simpan & Bagikan Hasil</h3><p>Download data atau salin ringkasan untuk WAG</p>
     <div class="export-buttons">
       <button class="btn-export" onclick="copyWA()">📱 Ringkasan WAG</button>
-      <button class="btn-export" onclick="dlJSON()">💾 JSON</button>
-      <button class="btn-export" onclick="dlCSV()">📄 CSV</button>
+      ${isAdmin?`<button class="btn-export" onclick="dlJSON()">💾 JSON</button>
+      <button class="btn-export" onclick="dlCSV()">📄 CSV</button>`:''}
       <button class="btn-export" onclick="window.print()">🖨️ Cetak</button>
     </div></div>
     <div style="text-align:center;margin-top:1rem;display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap">
       <button class="btn btn-primary" onclick="switchPage('form')">📝 Tambah Responden</button>
-      <button class="btn btn-danger" onclick="confirmClearAll()">🗑️ Hapus Semua</button>
+      ${isAdmin?`<button class="btn btn-danger" onclick="confirmClearAll()">🗑️ Hapus Semua</button>`:''}
     </div>`;
   c.innerHTML=html;
 }
