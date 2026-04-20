@@ -1,758 +1,953 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>MGMP Bahasa Inggris SMK — Needs Assessment</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f0f4f8;--surface:#fff;--surface-alt:#f7fafc;
-  --primary:#0f4c81;--primary-light:#1a6bb5;--primary-pale:#e8f0fa;
-  --accent:#e8913a;--accent-light:#f5a623;
-  --text:#1a2332;--text-secondary:#5a6a7e;--text-muted:#8e9bae;
-  --border:#dfe6ee;--border-light:#edf1f7;
-  --success:#2d9f6f;--success-bg:#e6f7ef;
-  --danger:#d64545;--danger-bg:#fde8e8;
-  --warning:#e8913a;--warning-bg:#fef3e0;
-  --radius:12px;--radius-lg:20px;
-  --shadow-sm:0 1px 3px rgba(15,76,129,.06);
-  --shadow:0 4px 16px rgba(15,76,129,.08);
-  --shadow-lg:0 12px 40px rgba(15,76,129,.12);
-  --shadow-xl:0 20px 60px rgba(15,76,129,.16);
-  --font:'Plus Jakarta Sans',system-ui,sans-serif;
-  --font-display:'Playfair Display',Georgia,serif;
-  --transition:all .3s cubic-bezier(.4,0,.2,1);
+  --p:#185FA5;--p-light:#378ADD;--p-pale:#E6F1FB;--p-dark:#0C447C;
+  --acc:#BA7517;--acc-light:#EF9F27;--acc-pale:#FAEEDA;
+  --ok:#3B6D11;--ok-bg:#EAF3DE;--ok-mid:#639922;
+  --err:#A32D2D;--err-bg:#FCEBEB;
+  --warn:#854F0B;--warn-bg:#FAEEDA;
+  --t1:var(--color-text-primary);--t2:var(--color-text-secondary);--t3:var(--color-text-tertiary);
+  --bg:var(--color-background-primary);--bg2:var(--color-background-secondary);--bg3:var(--color-background-tertiary);
+  --bd:var(--color-border-tertiary);--bd2:var(--color-border-secondary);
+  --r:var(--border-radius-md);--rl:var(--border-radius-lg);--rxl:var(--border-radius-xl);
+  --fn:var(--font-sans);
 }
-html{scroll-behavior:smooth;font-size:16px}
-body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--primary);border-radius:8px}
+body{font-family:var(--fn);color:var(--t1);font-size:14px;line-height:1.6;background:var(--bg3)}
 
 /* === HERO === */
-.hero{background:linear-gradient(135deg,#0a2e50 0%,#0f4c81 40%,#1a6bb5 100%);position:relative;overflow:hidden;padding:2rem 1.5rem 1rem;text-align:center;color:#fff}
-.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);padding:5px 14px;border-radius:20px;font-size:.7rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:.6rem;border:1px solid rgba(255,255,255,.15)}
-.hero h1{font-family:var(--font-display);font-size:clamp(1.4rem,4vw,2.2rem);font-weight:700;margin-bottom:.3rem;position:relative}
-.hero p{font-size:.85rem;opacity:.8;max-width:520px;margin:0 auto;position:relative;font-weight:300}
+.hero{
+  background:var(--p-dark);
+  padding:2rem 1.5rem 0;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(255,255,255,.02) 40px,rgba(255,255,255,.02) 80px);
+  pointer-events:none;
+}
+.hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,.12);border:0.5px solid rgba(255,255,255,.2);
+  padding:5px 14px;border-radius:20px;
+  font-size:11px;font-weight:500;letter-spacing:.8px;text-transform:uppercase;
+  color:rgba(255,255,255,.85);margin-bottom:1rem;
+}
+.hero-pill span{width:6px;height:6px;border-radius:50%;background:#FAC775;display:inline-block}
+.hero h1{font-size:22px;font-weight:500;color:#fff;line-height:1.3;margin-bottom:.35rem}
+.hero p{font-size:13px;color:rgba(255,255,255,.6);margin-bottom:1.25rem;max-width:420px}
+.sync-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 14px;border-radius:20px;font-size:12px;font-weight:500;
+  margin-bottom:1.25rem;
+}
+.sync-ok{background:rgba(99,153,34,.25);color:#C0DD97}
+.sync-load{background:rgba(186,117,23,.25);color:#FAC775}
+.sync-err{background:rgba(163,45,45,.25);color:#F7C1C1}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{display:inline-block;animation:spin 1s linear infinite}
 
-/* === TAB NAV === */
-.tab-nav{display:flex;justify-content:center;gap:0;background:rgba(255,255,255,.08);margin:1rem auto 0;border-radius:12px;overflow:hidden;max-width:400px;position:relative;border:1px solid rgba(255,255,255,.12)}
-.tab-btn{flex:1;padding:.6rem 1rem;font-family:var(--font);font-size:.78rem;font-weight:600;color:rgba(255,255,255,.6);background:transparent;border:none;cursor:pointer;transition:var(--transition);position:relative;display:flex;align-items:center;justify-content:center;gap:6px}
-.tab-btn.active{color:#fff;background:rgba(255,255,255,.15)}
-.tab-btn .tab-badge{background:var(--accent);color:#fff;font-size:.6rem;padding:1px 7px;border-radius:10px;font-weight:700;min-width:20px;text-align:center}
+/* === TABS === */
+.tabs{display:flex;gap:0;margin-top:0;border-radius:var(--rxl) var(--rxl) 0 0;overflow:hidden;max-width:340px;}
+.tab{
+  flex:1;padding:.75rem 1rem;font-size:13px;font-weight:500;
+  color:rgba(255,255,255,.5);background:rgba(255,255,255,.06);
+  border:none;cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  border-top:2px solid transparent;font-family:var(--fn);
+}
+.tab.active{color:#fff;background:rgba(255,255,255,.12);border-top-color:#FAC775}
+.tab:hover:not(.active){color:rgba(255,255,255,.75);background:rgba(255,255,255,.09)}
+.tbadge{
+  background:var(--acc-light);color:#412402;
+  font-size:10px;font-weight:500;padding:2px 7px;
+  border-radius:10px;min-width:20px;text-align:center;
+}
 
 /* === PROGRESS === */
-.progress-container{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light);padding:.65rem 1.5rem}
-.progress-inner{max-width:780px;margin:0 auto;display:flex;align-items:center;gap:1rem}
-.progress-steps{flex:1;display:flex;gap:4px}
-.progress-step{flex:1;height:5px;border-radius:8px;background:var(--border);transition:var(--transition)}
-.progress-step.done{background:var(--primary)}
-.progress-step.active{background:var(--accent);animation:pulse-bar 2s infinite}
-@keyframes pulse-bar{0%,100%{opacity:1}50%{opacity:.6}}
-.progress-label{font-size:.72rem;font-weight:600;color:var(--text-secondary);white-space:nowrap;min-width:70px;text-align:right}
+.prog-wrap{
+  background:var(--bg);border-bottom:0.5px solid var(--bd);
+  padding:.75rem 1.5rem;position:sticky;top:0;z-index:50;
+}
+.prog-inner{max-width:680px;margin:0 auto;display:flex;align-items:center;gap:1rem}
+.prog-track{flex:1;display:flex;gap:4px;align-items:center}
+.prog-seg{flex:1;height:3px;border-radius:3px;background:var(--bd);transition:all .3s}
+.prog-seg.done{background:var(--p)}
+.prog-seg.active{background:var(--acc-light)}
+.prog-label{font-size:12px;color:var(--t2);white-space:nowrap;font-weight:500}
+.prog-steps-labels{display:flex;gap:4px;flex:1}
+.step-dot{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:default;
+}
+.dot{
+  width:24px;height:24px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:500;transition:all .25s;
+  border:1.5px solid var(--bd);color:var(--t3);background:var(--bg);
+  flex-shrink:0;
+}
+.dot.done{background:var(--p);border-color:var(--p);color:#fff}
+.dot.active{background:var(--acc-light);border-color:var(--acc);color:#412402}
+.dot-lbl{font-size:10px;color:var(--t3);display:none}
 
-/* === MAIN === */
-.main{max-width:780px;margin:0 auto;padding:1.5rem}
+/* === LAYOUT === */
+.main{max-width:680px;margin:0 auto;padding:1.25rem 1rem}
 .page{display:none}.page.active{display:block}
-
-/* === SECTION CARDS === */
-.section-card{background:var(--surface);border-radius:var(--radius-lg);box-shadow:var(--shadow);margin-bottom:1.5rem;overflow:hidden;border:1px solid var(--border-light);animation:slideUp .5s ease both}
-@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.section-header{padding:1.25rem 1.5rem .85rem;border-bottom:1px solid var(--border-light)}
-.section-tag{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:.2rem}
-.section-title{font-family:var(--font-display);font-size:1.25rem;color:var(--primary);margin-bottom:.15rem}
-.section-subtitle{font-size:.75rem;color:var(--text-muted);font-style:italic}
-.section-body{padding:1.15rem 1.5rem 1.5rem}
-
-/* === FORM === */
-.form-group{margin-bottom:1.1rem}
-.form-label{display:block;font-size:.8rem;font-weight:600;color:var(--text);margin-bottom:.35rem}
-.form-label-en{font-size:.7rem;color:var(--text-muted);font-style:italic;font-weight:400}
-.form-input,.form-select,.form-textarea{width:100%;padding:.65rem .85rem;border:1.5px solid var(--border);border-radius:var(--radius);font-family:var(--font);font-size:.86rem;color:var(--text);background:var(--surface);transition:var(--transition)}
-.form-input:focus,.form-select:focus,.form-textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-pale)}
-.form-textarea{resize:vertical;min-height:70px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
-
-/* === LIKERT === */
-.likert-item{background:var(--surface-alt);border:1px solid var(--border-light);border-radius:var(--radius);padding:.9rem;margin-bottom:.5rem;transition:var(--transition)}
-.likert-item:hover{border-color:var(--primary-light);transform:translateX(2px)}
-.likert-text{font-size:.82rem;font-weight:500;margin-bottom:.1rem}
-.likert-text-en{font-size:.68rem;color:var(--text-muted);font-style:italic;margin-bottom:.5rem}
-.likert-options{display:flex;gap:5px}
-.likert-btn{flex:1;padding:.4rem .15rem;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-size:.68rem;font-weight:600;color:var(--text-secondary);cursor:pointer;transition:var(--transition);text-align:center;line-height:1.2}
-.likert-btn:hover{border-color:var(--primary);color:var(--primary)}
-.likert-btn.selected{background:var(--primary);color:#fff;border-color:var(--primary);box-shadow:0 2px 8px rgba(15,76,129,.25)}
-.likert-labels{display:flex;justify-content:space-between;margin-bottom:.25rem}
-.likert-labels span{font-size:.58rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
-
-/* === CHECKBOX & RADIO === */
-.check-group{display:flex;flex-direction:column;gap:.35rem}
-.check-item{display:flex;align-items:flex-start;gap:.55rem;padding:.55rem .75rem;border:1.5px solid var(--border-light);border-radius:var(--radius);cursor:pointer;transition:var(--transition);background:var(--surface)}
-.check-item:hover{border-color:var(--primary-light);background:var(--primary-pale)}
-.check-item.checked{border-color:var(--primary);background:var(--primary-pale)}
-.check-box{width:20px;height:20px;border:2px solid var(--border);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:var(--transition);margin-top:1px}
-.check-item.checked .check-box{background:var(--primary);border-color:var(--primary)}
-.check-box svg{width:12px;height:12px;stroke:#fff;stroke-width:3;fill:none;opacity:0;transition:var(--transition)}
-.check-item.checked .check-box svg{opacity:1}
-.check-text{font-size:.8rem;font-weight:500;line-height:1.4}
-.check-text-en{font-size:.68rem;color:var(--text-muted);font-style:italic}
-.radio-group{display:flex;flex-direction:column;gap:.35rem}
-.radio-item{display:flex;align-items:center;gap:.55rem;padding:.5rem .75rem;border:1.5px solid var(--border-light);border-radius:var(--radius);cursor:pointer;transition:var(--transition);background:var(--surface)}
-.radio-item:hover{border-color:var(--primary-light)}
-.radio-item.selected{border-color:var(--primary);background:var(--primary-pale)}
-.radio-dot{width:18px;height:18px;border:2px solid var(--border);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:var(--transition)}
-.radio-item.selected .radio-dot{border-color:var(--primary)}
-.radio-dot::after{content:'';width:10px;height:10px;border-radius:50%;background:var(--primary);transform:scale(0);transition:var(--transition)}
-.radio-item.selected .radio-dot::after{transform:scale(1)}
-
-/* === BUTTONS === */
-.nav-buttons{display:flex;gap:.75rem;margin-top:1.25rem;justify-content:space-between}
-.btn{padding:.7rem 1.4rem;border:none;border-radius:var(--radius);font-family:var(--font);font-size:.85rem;font-weight:600;cursor:pointer;transition:var(--transition);display:inline-flex;align-items:center;gap:.5rem}
-.btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;box-shadow:0 4px 12px rgba(15,76,129,.25)}
-.btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(15,76,129,.3)}
-.btn-secondary{background:var(--surface);color:var(--text-secondary);border:1.5px solid var(--border)}
-.btn-secondary:hover{border-color:var(--primary);color:var(--primary)}
-.btn-accent{background:linear-gradient(135deg,var(--accent),var(--accent-light));color:#fff;box-shadow:0 4px 12px rgba(232,145,58,.3)}
-.btn-accent:hover{transform:translateY(-1px)}
-.btn-danger{background:var(--danger);color:#fff}
-.btn-danger:hover{filter:brightness(1.1)}
 .step{display:none}.step.active{display:block}
 
-/* === DASHBOARD === */
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.65rem;margin-bottom:1.25rem}
-.stat-card{background:var(--surface);border-radius:var(--radius);padding:.85rem .6rem;text-align:center;border:1px solid var(--border-light);box-shadow:var(--shadow-sm)}
-.stat-value{font-size:1.7rem;font-weight:800;color:var(--primary);line-height:1}
-.stat-label{font-size:.65rem;color:var(--text-muted);margin-top:.25rem;text-transform:uppercase;letter-spacing:.5px}
-.chart-card{background:var(--surface);border-radius:var(--radius-lg);padding:1.15rem;margin-bottom:.85rem;border:1px solid var(--border-light);box-shadow:var(--shadow-sm)}
-.chart-title{font-size:.82rem;font-weight:700;color:var(--primary);margin-bottom:.65rem;display:flex;align-items:center;gap:.4rem}
-.chart-title-icon{font-size:1rem}
-.chart-desc{font-size:.7rem;color:var(--text-muted);margin-top:-.4rem;margin-bottom:.6rem}
+/* === SECTION CARDS === */
+.scard{
+  background:var(--bg);border:0.5px solid var(--bd);
+  border-radius:var(--rl);margin-bottom:1rem;overflow:hidden;
+}
+.scard-head{
+  padding:1rem 1.25rem .9rem;
+  border-bottom:0.5px solid var(--bd);
+  display:flex;align-items:flex-start;gap:.75rem;
+}
+.scard-icon{
+  width:36px;height:36px;border-radius:var(--r);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;flex-shrink:0;background:var(--p-pale);
+}
+.scard-meta{flex:1}
+.stag{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:var(--t3);margin-bottom:2px}
+.stitle{font-size:15px;font-weight:500;color:var(--p-dark)}
+.ssub{font-size:12px;color:var(--t3);font-style:italic}
+.scard-body{padding:1rem 1.25rem 1.25rem}
 
-/* === HORIZONTAL BAR === */
-.hbar{margin-bottom:.55rem}
-.hbar-label{font-size:.72rem;font-weight:500;margin-bottom:.15rem;display:flex;justify-content:space-between;gap:.5rem}
-.hbar-label span:last-child{font-weight:700;color:var(--primary);white-space:nowrap}
-.hbar-track{height:20px;background:var(--border-light);border-radius:6px;overflow:hidden;position:relative}
-.hbar-fill{height:100%;border-radius:6px;transition:width .8s cubic-bezier(.4,0,.2,1);min-width:0}
+/* === FORM FIELDS === */
+.fg{margin-bottom:.85rem}
+.flabel{
+  display:flex;align-items:baseline;gap:.4rem;
+  font-size:12px;font-weight:500;color:var(--t1);margin-bottom:.3rem;
+}
+.flabel-en{font-size:11px;color:var(--t3);font-style:italic;font-weight:400}
+.freq{font-size:10px;color:var(--err);margin-left:auto}
+input[type=text],input[type=email],select,textarea{
+  width:100%;padding:.55rem .8rem;
+  border:0.5px solid var(--bd2);border-radius:var(--r);
+  font-family:var(--fn);font-size:13px;color:var(--t1);
+  background:var(--bg);transition:all .2s;
+  -webkit-appearance:none;
+}
+input:focus,select:focus,textarea:focus{
+  outline:none;border-color:var(--p);
+  box-shadow:0 0 0 3px rgba(24,95,165,.12);
+}
+input::placeholder,textarea::placeholder{color:var(--t3)}
+textarea{resize:vertical;min-height:60px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px}
 
-/* === PRIORITY LIST === */
-.priority-list{counter-reset:priority}
-.priority-item{display:flex;align-items:center;gap:.65rem;padding:.6rem .75rem;border-radius:var(--radius);margin-bottom:.35rem;background:var(--surface-alt);border:1px solid var(--border-light);animation:slideIn .4s ease both}
-.priority-item::before{counter-increment:priority;content:counter(priority);width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0}
-.priority-item:nth-child(1)::before{background:var(--accent);color:#fff}
-.priority-item:nth-child(2)::before{background:var(--primary);color:#fff}
-.priority-item:nth-child(3)::before{background:var(--primary-light);color:#fff}
-.priority-item:nth-child(n+4)::before{background:var(--border);color:var(--text-secondary)}
-.priority-text{font-size:.78rem;font-weight:500;flex:1}
-.priority-score{font-size:.7rem;font-weight:700;color:var(--accent)}
-@keyframes slideIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+/* === DIVIDER === */
+.subdiv{font-size:11px;font-weight:500;color:var(--t2);text-transform:uppercase;letter-spacing:.8px;margin:1rem 0 .5rem;display:flex;align-items:center;gap:.5rem}
+.subdiv::after{content:'';flex:1;height:0.5px;background:var(--bd)}
 
-/* === REC CARDS === */
-.rec-card{border-left:4px solid var(--accent);background:var(--surface-alt);border-radius:0 var(--radius) var(--radius) 0;padding:.85rem 1.1rem;margin-bottom:.5rem}
-.rec-card h4{font-size:.8rem;font-weight:700;color:var(--primary);margin-bottom:.15rem}
-.rec-card p{font-size:.72rem;color:var(--text-secondary);line-height:1.5}
-.rec-tag{display:inline-block;font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:2px 7px;border-radius:4px;margin-bottom:.25rem}
-.rec-tag.easy{background:var(--success-bg);color:var(--success)}
-.rec-tag.medium{background:var(--warning-bg);color:var(--warning)}
-.rec-tag.hard{background:var(--danger-bg);color:var(--danger)}
+/* === LIKERT === */
+.likert-item{
+  background:var(--bg2);border:0.5px solid var(--bd);
+  border-radius:var(--r);padding:.75rem;margin-bottom:.4rem;
+  transition:border-color .2s;
+}
+.likert-item.rated{border-color:var(--p);background:var(--p-pale)}
+.lt{font-size:13px;font-weight:500;margin-bottom:1px;color:var(--t1)}
+.lt-en{font-size:11px;color:var(--t3);font-style:italic;margin-bottom:.5rem}
+.lopts{display:flex;gap:4px}
+.lbtn{
+  flex:1;padding:.45rem .05rem;border:0.5px solid var(--bd);
+  border-radius:var(--r);background:var(--bg);
+  font-size:11px;font-weight:500;color:var(--t2);
+  cursor:pointer;transition:all .15s;text-align:center;
+  font-family:var(--fn);line-height:1.3;
+}
+.lbtn:hover{border-color:var(--p);color:var(--p);background:var(--p-pale)}
+.lbtn.sel{background:var(--p);color:#fff;border-color:var(--p)}
+.lscale{display:flex;justify-content:space-between;margin-bottom:.3rem}
+.lscale span{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.4px}
 
-/* === RESPONDENT TABLE === */
-.resp-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:1rem}
-.resp-table{width:100%;border-collapse:collapse;font-size:.72rem;min-width:500px}
-.resp-table th{background:var(--primary);color:#fff;padding:.55rem .5rem;text-align:left;font-weight:600;position:sticky;top:0;white-space:nowrap}
-.resp-table td{padding:.5rem;border-bottom:1px solid var(--border-light);vertical-align:top}
-.resp-table tr:nth-child(even){background:var(--surface-alt)}
-.resp-table tr:hover{background:var(--primary-pale)}
-.resp-delete{background:none;border:none;color:var(--danger);cursor:pointer;font-size:.85rem;padding:2px 6px;border-radius:4px;transition:var(--transition)}
-.resp-delete:hover{background:var(--danger-bg)}
+/* === CHECKBOXES === */
+.chk-grp{display:flex;flex-direction:column;gap:.3rem}
+.ci{
+  display:flex;align-items:flex-start;gap:.5rem;padding:.5rem .75rem;
+  border:0.5px solid var(--bd);border-radius:var(--r);
+  cursor:pointer;transition:all .15s;background:var(--bg);
+}
+.ci:hover{border-color:var(--bd2);background:var(--bg2)}
+.ci.checked{border-color:var(--p);background:var(--p-pale)}
+.cbox{
+  width:16px;height:16px;border:1.5px solid var(--bd2);
+  border-radius:4px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .15s;margin-top:2px;
+}
+.ci.checked .cbox{background:var(--p);border-color:var(--p)}
+.cbox svg{width:9px;height:9px;stroke:#fff;stroke-width:2.5;fill:none;opacity:0;transition:opacity .1s}
+.ci.checked .cbox svg{opacity:1}
+.ct{font-size:13px;font-weight:500;color:var(--t1);line-height:1.3}
+.cen{font-size:11px;color:var(--t3);font-style:italic}
 
-/* === DONUT CHART === */
-.donut-row{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
-.donut-item{text-align:center;flex:0 0 auto}
-.donut-item svg{width:90px;height:90px}
-.donut-label{font-size:.65rem;color:var(--text-secondary);margin-top:.2rem;font-weight:500}
+/* === RADIO === */
+.ri-grp{display:flex;flex-direction:column;gap:.3rem}
+.ri{
+  display:flex;align-items:center;gap:.5rem;padding:.45rem .75rem;
+  border:0.5px solid var(--bd);border-radius:var(--r);
+  cursor:pointer;transition:all .15s;background:var(--bg);
+}
+.ri:hover{border-color:var(--bd2);background:var(--bg2)}
+.ri.sel{border-color:var(--p);background:var(--p-pale)}
+.rdot{
+  width:14px;height:14px;border:1.5px solid var(--bd2);
+  border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .15s;position:relative;
+}
+.ri.sel .rdot{border-color:var(--p)}
+.rdot::after{
+  content:'';width:7px;height:7px;border-radius:50%;
+  background:var(--p);transform:scale(0);transition:transform .15s;
+}
+.ri.sel .rdot::after{transform:scale(1)}
 
-/* === EXPORT === */
-.export-section{background:linear-gradient(135deg,#0a2e50,#0f4c81);border-radius:var(--radius-lg);padding:1.25rem;color:#fff;text-align:center;margin-top:1.25rem}
-.export-section h3{font-family:var(--font-display);font-size:1.1rem;margin-bottom:.3rem}
-.export-section p{font-size:.75rem;opacity:.7;margin-bottom:.8rem}
-.export-buttons{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
-.btn-export{padding:.55rem 1rem;border:1.5px solid rgba(255,255,255,.3);border-radius:var(--radius);background:rgba(255,255,255,.1);color:#fff;font-family:var(--font);font-size:.75rem;font-weight:600;cursor:pointer;transition:var(--transition);display:inline-flex;align-items:center;gap:.35rem}
-.btn-export:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.5)}
+/* === BUTTONS === */
+.nav-btns{display:flex;gap:.5rem;margin-top:1.25rem;justify-content:space-between;align-items:center}
+.btn{
+  padding:.55rem 1.1rem;border:none;border-radius:var(--r);
+  font-family:var(--fn);font-size:13px;font-weight:500;
+  cursor:pointer;transition:all .2s;
+  display:inline-flex;align-items:center;gap:.35rem;
+}
+.btn-primary{background:var(--p);color:#fff}
+.btn-primary:hover{background:var(--p-light)}
+.btn-secondary{background:var(--bg);color:var(--t2);border:0.5px solid var(--bd2)}
+.btn-secondary:hover{border-color:var(--p);color:var(--p);background:var(--p-pale)}
+.btn-accent{background:var(--acc);color:#fff}
+.btn-accent:hover{background:var(--acc-light)}
+.btn-danger{background:var(--err);color:#fff}
+.btn-ghost{background:transparent;color:var(--t2);padding:.4rem .7rem;font-size:12px;border:0.5px solid var(--bd)}
+.btn-ghost:hover{background:var(--bg2)}
+.btn-sm{padding:.35rem .7rem;font-size:12px}
+.btn-icon{width:32px;height:32px;padding:0;justify-content:center;align-items:center}
+.btn:active{transform:scale(0.98)}
 
-/* === ADMIN PANEL === */
-.admin-bar{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:.7rem 1rem;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
-.admin-bar.logged-in{border-color:var(--success);background:var(--success-bg)}
-.admin-input{flex:1;min-width:120px;padding:.45rem .7rem;border:1.5px solid var(--border);border-radius:8px;font-family:var(--font);font-size:.78rem}
-.admin-input:focus{outline:none;border-color:var(--primary)}
-.admin-status{font-size:.72rem;font-weight:600;display:flex;align-items:center;gap:.3rem}
-.admin-status.locked{color:var(--text-muted)}
-.admin-status.unlocked{color:var(--success)}
-.btn-admin{padding:.4rem .85rem;border:none;border-radius:8px;font-family:var(--font);font-size:.72rem;font-weight:600;cursor:pointer;transition:var(--transition)}
-.btn-admin-login{background:var(--primary);color:#fff}
-.btn-admin-login:hover{filter:brightness(1.1)}
-.btn-admin-logout{background:var(--border);color:var(--text-secondary)}
-.btn-admin-logout:hover{background:var(--danger-bg);color:var(--danger)}
-
-/* === EMPTY STATE === */
-.empty-state{text-align:center;padding:3rem 1.5rem}
-.empty-icon{font-size:3rem;margin-bottom:.75rem}
-.empty-title{font-family:var(--font-display);font-size:1.2rem;color:var(--primary);margin-bottom:.3rem}
-.empty-desc{font-size:.82rem;color:var(--text-muted);max-width:380px;margin:0 auto .8rem}
-
-/* === TOAST === */
-.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:#1a2332;color:#fff;padding:.7rem 1.3rem;border-radius:var(--radius);font-size:.8rem;font-weight:500;z-index:999;transition:transform .4s cubic-bezier(.4,0,.2,1);box-shadow:var(--shadow-xl)}
+/* === RESULTS === */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.5rem;margin-bottom:.75rem}
+.stat{
+  background:var(--bg);border:0.5px solid var(--bd);
+  border-radius:var(--r);padding:.85rem .75rem;text-align:center;
+}
+.stat-val{font-size:26px;font-weight:500;color:var(--p-dark);line-height:1}
+.stat-lbl{font-size:10px;color:var(--t3);margin-top:.25rem;text-transform:uppercase;letter-spacing:.6px}
+.chart-card{
+  background:var(--bg);border:0.5px solid var(--bd);
+  border-radius:var(--rl);padding:1rem 1.25rem;margin-bottom:.75rem;
+}
+.ctitle{font-size:13px;font-weight:500;color:var(--p-dark);margin-bottom:.2rem;display:flex;align-items:center;gap:.35rem}
+.cdesc{font-size:11px;color:var(--t3);margin-bottom:.65rem}
+.hbar{margin-bottom:.5rem}
+.hbar-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.18rem;gap:.5rem}
+.hbar-row span:first-child{font-size:12px;color:var(--t1);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hbar-row span:last-child{font-size:11px;font-weight:500;color:var(--t2);white-space:nowrap;flex-shrink:0}
+.hbar-track{height:6px;background:var(--bg2);border-radius:3px;overflow:hidden}
+.hbar-fill{height:100%;border-radius:3px;transition:width .7s cubic-bezier(.4,0,.2,1)}
+.pri-list{display:flex;flex-direction:column;gap:.3rem}
+.pri-item{
+  display:flex;align-items:center;gap:.65rem;
+  padding:.5rem .75rem;background:var(--bg2);
+  border:0.5px solid var(--bd);border-radius:var(--r);
+}
+.pri-num{
+  width:22px;height:22px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:500;flex-shrink:0;
+}
+.pri-num.n1{background:var(--acc-light);color:#412402}
+.pri-num.n2{background:var(--p);color:#fff}
+.pri-num.n3{background:var(--p-light);color:#fff}
+.pri-num.nx{background:var(--bd2);color:var(--t2)}
+.pri-text{font-size:12px;font-weight:500;flex:1;color:var(--t1)}
+.pri-pct{font-size:11px;color:var(--t2)}
+.rec-card{
+  border-left:2px solid var(--acc);border-radius:0 var(--r) var(--r) 0;
+  padding:.65rem .9rem;margin-bottom:.4rem;background:var(--bg2);
+  border-top:0.5px solid var(--bd);border-right:0.5px solid var(--bd);
+  border-bottom:0.5px solid var(--bd);
+}
+.rec-tag{
+  display:inline-block;font-size:10px;font-weight:500;
+  text-transform:uppercase;letter-spacing:.5px;
+  padding:2px 8px;border-radius:var(--r);margin-bottom:.2rem;
+}
+.rec-easy{background:var(--ok-bg);color:var(--ok)}
+.rec-medium{background:var(--warn-bg);color:var(--warn)}
+.rec-hard{background:var(--p-pale);color:var(--p-dark)}
+.rec-card h4{font-size:13px;font-weight:500;color:var(--p-dark);margin-bottom:.18rem}
+.rec-card p{font-size:12px;color:var(--t2);line-height:1.5}
+.resp-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.resp-table{width:100%;border-collapse:collapse;font-size:12px;min-width:420px}
+.resp-table th{
+  background:var(--p-dark);color:#B5D4F4;
+  padding:.5rem .5rem;text-align:left;font-weight:500;
+  font-size:11px;white-space:nowrap;
+}
+.resp-table th:first-child{border-radius:var(--r) 0 0 var(--r)}
+.resp-table th:last-child{border-radius:0 var(--r) var(--r) 0}
+.resp-table td{padding:.4rem .5rem;border-bottom:0.5px solid var(--bd)}
+.resp-table tr:last-child td{border-bottom:none}
+.resp-del{background:none;border:none;color:var(--err);cursor:pointer;font-size:13px;padding:2px 5px;border-radius:var(--r)}
+.resp-del:hover{background:var(--err-bg)}
+.chip{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:2px 8px;border-radius:10px;font-size:10px;font-weight:500;
+}
+.chip-ok{background:var(--ok-bg);color:var(--ok-mid)}
+.chip-err{background:var(--err-bg);color:var(--err)}
+.chip-warn{background:var(--warn-bg);color:var(--warn)}
+.donut-wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-around;margin:.5rem 0}
+.di{text-align:center}
+.di svg{width:72px;height:72px}
+.di-lbl{font-size:11px;color:var(--t2);margin-top:.25rem;font-weight:500}
+.di-sub{font-size:10px;color:var(--t3);margin-top:1px}
+.exp-card{
+  background:var(--p-dark);border-radius:var(--rl);
+  padding:1.25rem;color:#fff;text-align:center;margin-top:.75rem;
+}
+.exp-card h3{font-size:15px;font-weight:500;margin-bottom:.3rem}
+.exp-card p{font-size:12px;opacity:.65;margin-bottom:1rem}
+.exp-btns{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
+.ebtn{
+  padding:.45rem .9rem;border:0.5px solid rgba(255,255,255,.25);
+  border-radius:var(--r);background:rgba(255,255,255,.1);
+  color:#fff;font-family:var(--fn);font-size:12px;font-weight:500;
+  cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.3rem;
+}
+.ebtn:hover{background:rgba(255,255,255,.2)}
+.adm-bar{
+  background:var(--bg);border:0.5px solid var(--bd);
+  border-radius:var(--r);padding:.55rem .85rem;margin-bottom:.75rem;
+  display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;
+}
+.adm-bar.active{border-color:var(--ok-mid);background:var(--ok-bg)}
+.toast{
+  position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(100px);
+  background:#0C447C;color:#E6F1FB;
+  padding:.55rem 1.1rem;border-radius:var(--rl);
+  font-size:13px;font-weight:500;z-index:999;
+  transition:transform .3s cubic-bezier(.4,0,.2,1);white-space:nowrap;
+  box-shadow:none;border:0.5px solid rgba(255,255,255,.15);
+}
 .toast.show{transform:translateX(-50%) translateY(0)}
-.footer{text-align:center;padding:1.5rem 1rem;color:var(--text-muted);font-size:.68rem}
+.overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.4);z-index:200;
+  align-items:center;justify-content:center;padding:1rem;
+}
+.overlay.show{display:flex}
+.modal{
+  background:var(--bg);border-radius:var(--rl);
+  padding:1.5rem;max-width:320px;width:100%;
+  border:0.5px solid var(--bd);
+}
+.modal h4{font-size:15px;font-weight:500;margin-bottom:.4rem}
+.modal p{font-size:13px;color:var(--t2);margin-bottom:1.25rem;line-height:1.5}
+.modal-acts{display:flex;gap:.5rem;justify-content:flex-end}
+.drive-banner{
+  background:var(--ok-bg);border:0.5px solid var(--ok-mid);
+  border-radius:var(--r);padding:.5rem .85rem;margin-bottom:.85rem;
+  font-size:12px;color:var(--ok);display:flex;align-items:center;gap:.4rem;
+}
+.empty{
+  text-align:center;padding:3rem 1.5rem;
+}
+.empty-icon{font-size:36px;margin-bottom:.75rem;display:block}
+.empty h3{font-size:15px;font-weight:500;color:var(--p-dark);margin-bottom:.35rem}
+.empty p{font-size:13px;color:var(--t2);max-width:320px;margin:0 auto .85rem}
+.legend{display:flex;gap:.85rem;margin-bottom:.6rem;flex-wrap:wrap}
+.leg-item{display:flex;align-items:center;gap:.3rem;font-size:11px;color:var(--t2)}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.section-heading{font-size:12px;font-weight:500;color:var(--p);margin:1rem 0 .45rem;padding-bottom:.3rem;border-bottom:0.5px solid var(--bd);display:flex;align-items:center;gap:.3rem}
+.score-badge{font-size:10px;padding:2px 7px;border-radius:var(--r);font-weight:500}
+.score-high{background:var(--ok-bg);color:var(--ok)}
+.score-mid{background:var(--warn-bg);color:var(--warn)}
+.score-low{background:var(--err-bg);color:var(--err)}
+.saran-item{
+  background:var(--bg2);border-radius:var(--r);padding:.55rem .75rem;
+  margin-bottom:.3rem;border-left:2px solid var(--p-light);
+}
+.saran-item .sname{font-size:11px;font-weight:500;color:var(--p);margin-bottom:2px}
+.saran-item .stxt{font-size:12px;color:var(--t2);line-height:1.5}
 
-/* ===== CONFIRM DIALOG ===== */
-.confirm-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;align-items:center;justify-content:center;padding:1rem}
-.confirm-overlay.show{display:flex}
-.confirm-box{background:var(--surface);border-radius:var(--radius-lg);padding:1.5rem;max-width:360px;width:100%;text-align:center;box-shadow:var(--shadow-xl)}
-.confirm-box h4{font-size:1rem;margin-bottom:.4rem;color:var(--text)}
-.confirm-box p{font-size:.82rem;color:var(--text-secondary);margin-bottom:1.25rem}
-.confirm-actions{display:flex;gap:.5rem;justify-content:center}
-
-/* ===== RESPONSIVE ===== */
-@media(min-width:901px){
-  .main{max-width:820px;padding:2rem}
-  .hero{padding:2.5rem 2rem 1.2rem}
-  .section-header{padding:1.5rem 2rem 1rem}
-  .section-body{padding:1.5rem 2rem 2rem}
-  .section-title{font-size:1.4rem}
-  .form-input,.form-select,.form-textarea{padding:.75rem 1rem;font-size:.9rem}
-  .stats-grid{grid-template-columns:repeat(4,1fr);gap:.85rem}
-  .chart-card{padding:1.4rem}
-  .donut-item svg{width:110px;height:110px}
-}
-@media(max-width:600px){
-  html{font-size:15px}
-  .hero{padding:1.5rem 1rem .8rem}
-  .hero h1{font-size:1.3rem}
-  .hero p{font-size:.78rem}
-  .tab-nav{margin:.75rem .5rem 0;max-width:100%}
-  .tab-btn{font-size:.72rem;padding:.5rem .5rem}
-  .main{padding:.75rem}
-  .section-card{border-radius:var(--radius);margin-bottom:1rem}
-  .section-header{padding:1rem .9rem .7rem}
-  .section-title{font-size:1.1rem}
-  .section-body{padding:.9rem}
-  .form-row{grid-template-columns:1fr}
-  .form-input,.form-select,.form-textarea{font-size:max(.86rem,16px);padding:.7rem .8rem}
-  .likert-options{display:grid;grid-template-columns:1fr 1fr;gap:5px}
-  .likert-btn{min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.7rem;padding:.45rem .25rem}
-  .check-item{padding:.65rem .75rem;min-height:46px}
-  .check-box{width:22px;height:22px}
-  .radio-item{padding:.6rem .75rem;min-height:46px}
-  .radio-dot{width:22px;height:22px}
-  .nav-buttons{flex-direction:column;gap:.5rem}
-  .nav-buttons .btn{width:100%;justify-content:center;min-height:46px}
-  .nav-buttons .btn-secondary{order:2}
-  .nav-buttons .btn-primary,.nav-buttons .btn-accent{order:1}
-  .stats-grid{grid-template-columns:1fr 1fr;gap:.5rem}
-  .stat-value{font-size:1.4rem}
-  .export-buttons{flex-direction:column;align-items:stretch}
-  .btn-export{justify-content:center;min-height:44px}
-  .toast{left:.75rem;right:.75rem;transform:translateX(0) translateY(100px);text-align:center}
-  .toast.show{transform:translateX(0) translateY(0)}
-  .progress-container{padding:.5rem .75rem}
-  .donut-item svg{width:80px;height:80px}
-  .donut-label{font-size:.6rem}
-}
-@media(max-width:360px){html{font-size:14px}.main{padding:.4rem}.section-body{padding:.75rem}}
-@supports(padding-bottom:env(safe-area-inset-bottom)){
-  .footer{padding-bottom:calc(1.5rem + env(safe-area-inset-bottom))}
-  .toast{bottom:calc(1.5rem + env(safe-area-inset-bottom))}
-}
-@media(hover:none) and (pointer:coarse){
-  .likert-item:hover{transform:none}
-  .btn:hover{transform:none}
-  .check-item:hover{background:var(--surface);border-color:var(--border-light)}
-  .check-item.checked:hover{background:var(--primary-pale);border-color:var(--primary)}
-  .likert-btn:active,.check-item:active,.radio-item:active,.btn:active{transform:scale(.97)}
-}
-@media print{
-  .hero{padding:1rem;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .progress-container,.nav-buttons,.export-section,.footer,.toast,.tab-nav{display:none!important}
-  .main{max-width:100%;padding:0}
-  .section-card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}
-  .page{display:block!important}
-  #formPage{display:none!important}
-  .hbar-fill,.stat-card,.rec-card,.priority-item{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+@media(max-width:500px){
+  .frow{grid-template-columns:1fr}
+  .lopts{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+  .lbtn{min-height:40px;flex-direction:column;display:flex;justify-content:center;align-items:center}
+  .nav-btns{flex-direction:column-reverse}
+  .nav-btns .btn{width:100%;justify-content:center}
+  .tabs{max-width:100%}
+  .hero{padding:1.5rem 1rem 0}
+  .hero h1{font-size:18px}
+  .dot-lbl{display:none}
 }
 </style>
-</head>
-<body>
+
+<div style="background:var(--bg3);border:0.5px solid var(--bd);border-radius:var(--border-radius-xl);overflow:hidden">
 
 <header class="hero">
-  <div class="hero-badge">📋 Needs Assessment 2026</div>
-  <h1>MGMP Bahasa Inggris SMK</h1>
-  <p>Kuesioner Analisis Kebutuhan — Bantu kami menyusun program kerja yang tepat sasaran</p>
-  <nav class="tab-nav" id="tabNav">
-    <button class="tab-btn active" onclick="switchPage('form')" id="tabForm">📝 Kuesioner</button>
-    <button class="tab-btn" onclick="switchPage('results')" id="tabResults">📊 Hasil <span class="tab-badge" id="respCount">0</span></button>
-  </nav>
+  <div class="hero-inner">
+    <div class="hero-pill"><span></span>Needs Assessment 2026</div>
+    <h1>MGMP Bahasa Inggris SMK</h1>
+    <p>Analisis kebutuhan untuk program kerja yang tepat sasaran dan terukur</p>
+    <div class="sync-pill sync-load" id="syncBar"><span class="spin">↻</span> Menghubungkan ke Google Drive...</div>
+    <div class="tabs">
+      <button class="tab active" onclick="switchPage('form')" id="tabForm">📝 Kuesioner</button>
+      <button class="tab" onclick="switchPage('results')" id="tabResults">📊 Hasil <span class="tbadge" id="respCount">0</span></button>
+    </div>
+  </div>
 </header>
 
-<div class="progress-container" id="progressBar">
-  <div class="progress-inner">
-    <div class="progress-steps" id="progressSteps"></div>
-    <div class="progress-label" id="progressLabel">Bagian 1/5</div>
+<div class="prog-wrap" id="progBar">
+  <div class="prog-inner">
+    <div class="prog-track" id="progDots"></div>
+    <div class="prog-label" id="progLbl">1 / 5</div>
   </div>
 </div>
 
-<!-- ==================== PAGE: FORM ==================== -->
 <div class="main page active" id="formPage">
+
   <div class="step active" data-step="1">
-    <div class="section-card"><div class="section-header"><div class="section-tag">Bagian A</div><div class="section-title">Profil Guru</div><div class="section-subtitle">Teacher Profile</div></div>
-      <div class="section-body">
-        <div class="form-group"><label class="form-label">Nama Lengkap <span class="form-label-en">Full Name</span></label><input class="form-input" id="nama" placeholder="Masukkan nama lengkap"></div>
-        <div class="form-group"><label class="form-label">Asal Sekolah <span class="form-label-en">School</span></label><input class="form-input" id="sekolah" placeholder="Nama sekolah"></div>
-        <div class="form-group"><label class="form-label">Jurusan yang Diajar <span class="form-label-en">Vocational Program</span></label><input class="form-input" id="jurusan" placeholder="Contoh: TKJ, RPL, Akuntansi"></div>
-        <div class="form-row">
-          <div class="form-group"><label class="form-label">Pendidikan Terakhir</label><select class="form-select" id="pendidikan"><option value="">— Pilih —</option><option>S1</option><option>S2</option><option>S3</option><option>Lainnya</option></select></div>
-          <div class="form-group"><label class="form-label">Masa Mengajar</label><select class="form-select" id="masaMengajar"><option value="">— Pilih —</option><option>&lt; 5 tahun</option><option>5–10 tahun</option><option>&gt; 10 tahun</option></select></div>
+    <div class="scard">
+      <div class="scard-head">
+        <div class="scard-icon">👤</div>
+        <div class="scard-meta">
+          <div class="stag">Bagian A</div>
+          <div class="stitle">Profil Guru</div>
+          <div class="ssub">Teacher Profile</div>
         </div>
-        <div class="form-row">
-          <div class="form-group"><label class="form-label">Status Sertifikasi</label><select class="form-select" id="sertifikasi"><option value="">— Pilih —</option><option>Sudah</option><option>Belum</option></select></div>
-          <div class="form-group"><label class="form-label">Email (belajar.id)</label><input class="form-input" id="email" type="email" placeholder="nama@belajar.id"></div>
+      </div>
+      <div class="scard-body">
+        <div class="fg"><label class="flabel">Nama Lengkap <span class="flabel-en">Full Name</span> <span class="freq">*wajib</span></label><input type="text" id="nama" placeholder="Masukkan nama lengkap"></div>
+        <div class="frow">
+          <div class="fg"><label class="flabel">Asal Sekolah</label><input type="text" id="sekolah" placeholder="Nama sekolah"></div>
+          <div class="fg"><label class="flabel">Jurusan yang Diajar</label><input type="text" id="jurusan" placeholder="TKJ, RPL, Akuntansi..."></div>
         </div>
-        <div class="nav-buttons"><div></div><button class="btn btn-primary" onclick="goStep(2)">Lanjut → Kompetensi</button></div>
+        <div class="frow">
+          <div class="fg"><label class="flabel">Pendidikan Terakhir</label><select id="pendidikan"><option value="">— Pilih —</option><option>S1</option><option>S2</option><option>S3</option><option>Lainnya</option></select></div>
+          <div class="fg"><label class="flabel">Masa Mengajar</label><select id="masaMengajar"><option value="">— Pilih —</option><option>&lt; 5 tahun</option><option>5–10 tahun</option><option>&gt; 10 tahun</option></select></div>
+        </div>
+        <div class="frow">
+          <div class="fg"><label class="flabel">Status Sertifikasi</label><select id="sertifikasi"><option value="">— Pilih —</option><option>Sudah</option><option>Belum</option></select></div>
+          <div class="fg"><label class="flabel">Email belajar.id</label><input type="email" id="email" placeholder="nama@belajar.id"></div>
+        </div>
+        <div class="nav-btns"><div></div><button class="btn btn-primary" onclick="goStep(2)">Lanjut ke Kompetensi →</button></div>
       </div>
     </div>
   </div>
+
   <div class="step" data-step="2">
-    <div class="section-card"><div class="section-header"><div class="section-tag">Bagian B</div><div class="section-title">Penilaian Diri Kompetensi</div><div class="section-subtitle">Self-Assessment</div></div>
-      <div class="section-body">
-        <div class="likert-labels"><span>Sangat Tidak Setuju</span><span>Sangat Setuju</span></div>
-        <div id="likertContainer"></div>
-        <div class="nav-buttons"><button class="btn btn-secondary" onclick="goStep(1)">← Kembali</button><button class="btn btn-primary" onclick="goStep(3)">Lanjut → Tantangan</button></div>
+    <div class="scard">
+      <div class="scard-head">
+        <div class="scard-icon">📊</div>
+        <div class="scard-meta">
+          <div class="stag">Bagian B</div>
+          <div class="stitle">Penilaian Diri Kompetensi</div>
+          <div class="ssub">Self-Assessment · Skala 1–4</div>
+        </div>
+      </div>
+      <div class="scard-body">
+        <div class="lscale"><span>Sangat tidak setuju</span><span>Sangat setuju</span></div>
+        <div id="likertCont"></div>
+        <div class="nav-btns"><button class="btn btn-secondary" onclick="goStep(1)">← Kembali</button><button class="btn btn-primary" onclick="goStep(3)">Lanjut ke Tantangan →</button></div>
       </div>
     </div>
   </div>
+
   <div class="step" data-step="3">
-    <div class="section-card"><div class="section-header"><div class="section-tag">Bagian C</div><div class="section-title">Tantangan Mengajar</div><div class="section-subtitle">Teaching Challenges</div></div>
-      <div class="section-body">
-        <h4 style="font-size:.8rem;color:var(--primary);margin-bottom:.5rem">C1. Pembelajaran</h4><div class="check-group" id="chkPembelajaran"></div>
-        <h4 style="font-size:.8rem;color:var(--primary);margin:1rem 0 .5rem">C2. Asesmen</h4><div class="check-group" id="chkAsesmen"></div>
-        <h4 style="font-size:.8rem;color:var(--primary);margin:1rem 0 .5rem">C3. Teknologi</h4><div class="check-group" id="chkTeknologi"></div>
-        <div class="form-group" style="margin-top:1rem"><label class="form-label">Tantangan lainnya</label><textarea class="form-textarea" id="tantanganLain" rows="2" placeholder="Tantangan lain..."></textarea></div>
-        <div class="nav-buttons"><button class="btn btn-secondary" onclick="goStep(2)">← Kembali</button><button class="btn btn-primary" onclick="goStep(4)">Lanjut → Pelatihan</button></div>
+    <div class="scard">
+      <div class="scard-head">
+        <div class="scard-icon">⚡</div>
+        <div class="scard-meta">
+          <div class="stag">Bagian C</div>
+          <div class="stitle">Tantangan Mengajar</div>
+          <div class="ssub">Teaching Challenges · Pilih semua yang relevan</div>
+        </div>
+      </div>
+      <div class="scard-body">
+        <div class="section-heading">Pembelajaran</div>
+        <div class="chk-grp" id="chkP"></div>
+        <div class="section-heading">Asesmen</div>
+        <div class="chk-grp" id="chkA"></div>
+        <div class="section-heading">Teknologi</div>
+        <div class="chk-grp" id="chkT"></div>
+        <div class="fg" style="margin-top:1rem"><label class="flabel">Tantangan lainnya</label><textarea id="tantLain" placeholder="Ceritakan tantangan lain yang Anda hadapi..."></textarea></div>
+        <div class="nav-btns"><button class="btn btn-secondary" onclick="goStep(2)">← Kembali</button><button class="btn btn-primary" onclick="goStep(4)">Lanjut ke Pelatihan →</button></div>
       </div>
     </div>
   </div>
+
   <div class="step" data-step="4">
-    <div class="section-card"><div class="section-header"><div class="section-tag">Bagian D</div><div class="section-title">Kebutuhan Pelatihan</div><div class="section-subtitle">Training Needs</div></div>
-      <div class="section-body">
-        <div class="check-group" id="chkPelatihan"></div>
-        <div class="form-group" style="margin-top:1rem"><label class="form-label">Topik lainnya</label><textarea class="form-textarea" id="pelatihanLain" rows="2" placeholder="Topik lain..."></textarea></div>
-        <div class="nav-buttons"><button class="btn btn-secondary" onclick="goStep(3)">← Kembali</button><button class="btn btn-primary" onclick="goStep(5)">Lanjut → Harapan</button></div>
+    <div class="scard">
+      <div class="scard-head">
+        <div class="scard-icon">🎯</div>
+        <div class="scard-meta">
+          <div class="stag">Bagian D</div>
+          <div class="stitle">Kebutuhan Pelatihan</div>
+          <div class="ssub">Training Needs · Pilih semua yang diinginkan</div>
+        </div>
+      </div>
+      <div class="scard-body">
+        <div class="chk-grp" id="chkTr"></div>
+        <div class="fg" style="margin-top:1rem"><label class="flabel">Topik pelatihan lainnya</label><textarea id="pelLain" placeholder="Topik lain yang Anda butuhkan..."></textarea></div>
+        <div class="nav-btns"><button class="btn btn-secondary" onclick="goStep(3)">← Kembali</button><button class="btn btn-primary" onclick="goStep(5)">Lanjut ke Harapan →</button></div>
       </div>
     </div>
   </div>
+
   <div class="step" data-step="5">
-    <div class="section-card"><div class="section-header"><div class="section-tag">Bagian E</div><div class="section-title">Harapan terhadap MGMP</div><div class="section-subtitle">Expectations</div></div>
-      <div class="section-body">
-        <h4 style="font-size:.8rem;color:var(--primary);margin-bottom:.5rem">E1. Format kegiatan</h4><div class="check-group" id="chkFormat"></div>
-        <h4 style="font-size:.8rem;color:var(--primary);margin:1rem 0 .5rem">E2. Frekuensi pertemuan</h4><div class="radio-group" id="radioFrekuensi"></div>
-        <h4 style="font-size:.8rem;color:var(--primary);margin:1rem 0 .5rem">E3. Waktu pelaksanaan</h4><div class="check-group" id="chkWaktu"></div>
-        <h4 style="font-size:.8rem;color:var(--primary);margin:1rem 0 .5rem">E4. Harapan utama</h4><div class="check-group" id="chkHarapan"></div>
-        <h4 style="font-size:.8rem;color:var(--primary);margin:1rem 0 .5rem">E5. Kesediaan narasumber</h4><div class="radio-group" id="radioNarasumber"></div>
-        <div class="form-group" style="margin-top:1rem"><label class="form-label">E6. Saran & masukan</label><textarea class="form-textarea" id="saran" rows="3" placeholder="Saran untuk MGMP..."></textarea></div>
-        <div class="nav-buttons"><button class="btn btn-secondary" onclick="goStep(4)">← Kembali</button><button class="btn btn-accent" onclick="submitForm()" style="font-size:.92rem;padding:.8rem 1.8rem">✨ Simpan & Lihat Hasil</button></div>
+    <div class="scard">
+      <div class="scard-head">
+        <div class="scard-icon">💬</div>
+        <div class="scard-meta">
+          <div class="stag">Bagian E</div>
+          <div class="stitle">Harapan terhadap MGMP</div>
+          <div class="ssub">Expectations for the Program</div>
+        </div>
+      </div>
+      <div class="scard-body">
+        <div class="section-heading">Format kegiatan</div>
+        <div class="chk-grp" id="chkFmt"></div>
+        <div class="section-heading">Frekuensi pertemuan</div>
+        <div class="ri-grp" id="riFreq"></div>
+        <div class="section-heading">Waktu pelaksanaan</div>
+        <div class="chk-grp" id="chkWkt"></div>
+        <div class="section-heading">Harapan utama</div>
+        <div class="chk-grp" id="chkHrp"></div>
+        <div class="section-heading">Kesediaan menjadi narasumber</div>
+        <div class="ri-grp" id="riNar"></div>
+        <div class="fg" style="margin-top:1rem"><label class="flabel">Saran & masukan untuk MGMP</label><textarea id="saran" rows="3" placeholder="Tuliskan harapan dan saran Anda..."></textarea></div>
+        <div class="nav-btns">
+          <button class="btn btn-secondary" onclick="goStep(4)">← Kembali</button>
+          <button class="btn btn-accent" onclick="submitForm()" style="font-size:14px;padding:.7rem 1.5rem">✨ Simpan Respons</button>
+        </div>
       </div>
     </div>
   </div>
+
 </div>
 
-<!-- ==================== PAGE: RESULTS ==================== -->
-<div class="main page" id="resultsPage"><div id="resultsContent"></div></div>
+<div class="main page" id="resultsPage"><div id="resCont"></div></div>
+</div>
 
-<div class="footer">MGMP Bahasa Inggris SMK — Needs Assessment Tool © 2026</div>
 <div class="toast" id="toast"></div>
-<div class="confirm-overlay" id="confirmDialog">
-  <div class="confirm-box"><h4 id="confirmTitle">Konfirmasi</h4><p id="confirmMsg">Apakah Anda yakin?</p>
-    <div class="confirm-actions"><button class="btn btn-secondary" onclick="closeConfirm()">Batal</button><button class="btn btn-danger" id="confirmYes">Ya, Hapus</button></div>
+<div class="overlay" id="confirmDlg">
+  <div class="modal">
+    <h4 id="confirmTitle">Konfirmasi</h4>
+    <p id="confirmMsg">Apakah Anda yakin?</p>
+    <div class="modal-acts">
+      <button class="btn btn-ghost btn-sm" onclick="closeConfirm()">Batal</button>
+      <button class="btn btn-danger btn-sm" id="confirmYes">Hapus</button>
+    </div>
   </div>
 </div>
 
 <script>
-// ==================== DATA ====================
-const LIKERT_ITEMS=[
+const FILE_ID='1ioxZT6G753cN3QuHeg0aSkj3q7ptZL1b';
+const FOLDER_ID='1Ty_T9yH9F0P82mizbH0-IDhdTtPCW_Eo';
+const FOLDER_URL='https://drive.google.com/drive/folders/1Ty_T9yH9F0P82mizbH0-IDhdTtPCW_Eo';
+const ADMIN_PIN='mgmp2026';
+let isAdmin=false,currentStep=1,isSaving=false;
+const state={likert:{},challenges:new Set(),training:new Set(),format:new Set(),waktu:new Set(),harapan:new Set(),frekuensi:'',narasumber:''};
+
+const LIKERT=[
   {id:'cp',text:'Memahami CP Bahasa Inggris Fase F SMK',en:'Understand CP Phase F'},
   {id:'tp',text:'Mampu menyusun TP dan Alur TP secara mandiri',en:'Develop TP independently'},
-  {id:'modul',text:'Mampu menyusun modul ajar Kurikulum Merdeka',en:'Develop Kurikulum Merdeka modules'},
-  {id:'skills',text:'Percaya diri mengajar 4 keterampilan bahasa (LSRW)',en:'Confident teaching 4 skills'},
+  {id:'modul',text:'Mampu menyusun modul ajar Kurikulum Merdeka',en:'Develop KurMer modules'},
+  {id:'skills',text:'Percaya diri mengajar 4 keterampilan (LSRW)',en:'Confident teaching 4 skills'},
   {id:'esp',text:'Mampu mengintegrasikan ESP sesuai jurusan',en:'Integrate ESP for vocational'},
-  {id:'asesmen',text:'Mampu merancang asesmen formatif & sumatif bervariasi',en:'Design varied assessments'},
-  {id:'tech',text:'Mampu memanfaatkan teknologi digital dalam pembelajaran',en:'Use digital technology'},
-  {id:'tarl',text:'Memahami TaRL dan diferensiasi pembelajaran',en:'Understand TaRL & differentiation'},
-  {id:'proficiency',text:'Kemampuan Bahasa Inggris memadai (min. B2)',en:'Adequate English proficiency'},
-  {id:'pengembangan',text:'Aktif mengembangkan diri melalui pelatihan & komunitas',en:'Active professional development'},
+  {id:'asesmen',text:'Mampu merancang asesmen formatif & sumatif',en:'Design varied assessments'},
+  {id:'tech',text:'Mampu memanfaatkan teknologi digital',en:'Use digital technology'},
+  {id:'tarl',text:'Memahami TaRL dan diferensiasi pembelajaran',en:'Understand TaRL'},
+  {id:'proficiency',text:'Kemampuan Bahasa Inggris memadai (min. B2)',en:'English proficiency B2+'},
+  {id:'pengembangan',text:'Aktif mengembangkan diri secara profesional',en:'Active professional development'},
 ];
-const CHALLENGES={
-  pembelajaran:[
-    {id:'cp1',text:'Kemampuan siswa sangat beragam',en:'Varied student levels'},
-    {id:'cp2',text:'Motivasi belajar siswa rendah',en:'Low student motivation'},
-    {id:'cp3',text:'Sulit mengajar speaking/listening',en:'Difficulty teaching speaking/listening'},
-    {id:'cp4',text:'Sulit mengaitkan materi dengan konteks kejuruan (ESP)',en:'Difficulty with ESP context'},
-    {id:'cp5',text:'Kurangnya bahan ajar relevan SMK',en:'Lack of SMK materials'},
-    {id:'cp6',text:'Jam pelajaran terbatas',en:'Limited teaching hours'},
-    {id:'cp7',text:'Ukuran kelas terlalu besar',en:'Large class sizes'},
-  ],
-  asesmen:[
-    {id:'ca1',text:'Kesulitan menyusun soal HOTS',en:'HOTS questions'},
-    {id:'ca2',text:'Belum paham asesmen Kurikulum Merdeka',en:'Kurikulum Merdeka assessment'},
-    {id:'ca3',text:'Sulit melaksanakan asesmen autentik',en:'Authentic assessment'},
-    {id:'ca4',text:'Belum mampu pakai platform asesmen digital',en:'Digital assessment platforms'},
-    {id:'ca5',text:'Sulit melakukan asesmen diagnostik',en:'Diagnostic assessment'},
-  ],
-  teknologi:[
-    {id:'ct1',text:'Keterbatasan akses internet',en:'Limited internet'},
-    {id:'ct2',text:'Kurang terampil menggunakan LMS',en:'LMS skills'},
-    {id:'ct3',text:'Belum mampu membuat media interaktif',en:'Interactive media'},
-    {id:'ct4',text:'Belum familiar dengan AI tools',en:'AI tools'},
-    {id:'ct5',text:'Kurangnya perangkat memadai',en:'Insufficient devices'},
-  ]
-};
-const ALL_CHALLENGES=[...CHALLENGES.pembelajaran,...CHALLENGES.asesmen,...CHALLENGES.teknologi];
-const TRAINING_TOPICS=[
-  {id:'t1',text:'Penyusunan CP, TP, dan ATP',en:'CP, TP, ATP development',cat:'kurikulum'},
-  {id:'t2',text:'Modul Ajar Kurikulum Merdeka',en:'Kurikulum Merdeka modules',cat:'kurikulum'},
-  {id:'t3',text:'ESP untuk berbagai jurusan',en:'ESP for vocational programs',cat:'pedagogik'},
-  {id:'t4',text:'Teaching at the Right Level (TaRL)',en:'TaRL strategies',cat:'pedagogik'},
-  {id:'t5',text:'Asesmen formatif, sumatif & diagnostik',en:'Assessment types',cat:'asesmen'},
-  {id:'t6',text:'Pemanfaatan AI dalam pembelajaran',en:'AI in teaching',cat:'teknologi'},
-  {id:'t7',text:'Media pembelajaran digital & interaktif',en:'Digital interactive media',cat:'teknologi'},
-  {id:'t8',text:'Peningkatan English proficiency guru',en:'Teacher proficiency',cat:'proficiency'},
-  {id:'t9',text:'Penelitian Tindakan Kelas (PTK)',en:'Classroom Action Research',cat:'profesional'},
-  {id:'t10',text:'Project-Based Learning (PjBL)',en:'PjBL in SMK English',cat:'pedagogik'},
-  {id:'t11',text:'Lesson Study & Peer Teaching',en:'Lesson Study & Peer Teaching',cat:'profesional'},
-  {id:'t12',text:'Persiapan Asesmen Nasional',en:'National Assessment prep',cat:'asesmen'},
-];
-const FORMAT_OPTIONS=[
-  {id:'f1',text:'Workshop praktis',en:'Practical workshops'},
-  {id:'f2',text:'Seminar narasumber ahli',en:'Expert seminars'},
-  {id:'f3',text:'Lesson study & observasi',en:'Lesson study'},
-  {id:'f4',text:'Diskusi studi kasus',en:'Case study'},
-  {id:'f5',text:'Peer teaching / microteaching',en:'Peer teaching'},
-  {id:'f6',text:'Belajar mandiri (daring)',en:'Self-paced online'},
-  {id:'f7',text:'Kunjungan sekolah/industri',en:'Benchmarking visits'},
-];
-const FREQ_OPTIONS=[{id:'fr1',text:'1x per bulan'},{id:'fr2',text:'2x per bulan'},{id:'fr3',text:'1x per triwulan'},{id:'fr4',text:'Fleksibel'}];
-const WAKTU_OPTIONS=[{id:'w1',text:'Hari kerja (setelah mengajar)'},{id:'w2',text:'Sabtu'},{id:'w3',text:'Libur sekolah'},{id:'w4',text:'Daring/online'},{id:'w5',text:'Blended'}];
-const HARAPAN_OPTIONS=[{id:'h1',text:'Peningkatan kompetensi pedagogik'},{id:'h2',text:'Peningkatan kemampuan Bahasa Inggris'},{id:'h3',text:'Berbagi pengalaman & best practices'},{id:'h4',text:'Bahan ajar siap pakai'},{id:'h5',text:'Jejaring profesional'},{id:'h6',text:'Dukungan kenaikan pangkat'},{id:'h7',text:'Persiapan PPG/sertifikasi'}];
-const NARASUMBER_OPTIONS=[{id:'n1',text:'Ya, bersedia'},{id:'n2',text:'Bersedia jika dilatih'},{id:'n3',text:'Tidak saat ini'}];
+const CP=[{id:'cp1',text:'Kemampuan siswa sangat beragam',en:'Varied student levels'},{id:'cp2',text:'Motivasi belajar siswa rendah',en:'Low student motivation'},{id:'cp3',text:'Sulit mengajar speaking/listening',en:'Speaking/listening difficulty'},{id:'cp4',text:'Sulit mengaitkan materi dengan konteks kejuruan (ESP)',en:'ESP integration'},{id:'cp5',text:'Kurangnya bahan ajar relevan SMK',en:'Lack of SMK materials'},{id:'cp6',text:'Jam pelajaran terbatas',en:'Limited hours'},{id:'cp7',text:'Ukuran kelas terlalu besar',en:'Large classes'}];
+const CA=[{id:'ca1',text:'Kesulitan menyusun soal HOTS',en:'HOTS questions'},{id:'ca2',text:'Belum paham asesmen Kurikulum Merdeka',en:'KurMer assessment'},{id:'ca3',text:'Sulit melaksanakan asesmen autentik',en:'Authentic assessment'},{id:'ca4',text:'Belum mampu pakai platform asesmen digital',en:'Digital platforms'},{id:'ca5',text:'Sulit melakukan asesmen diagnostik',en:'Diagnostic assessment'}];
+const CT=[{id:'ct1',text:'Keterbatasan akses internet',en:'Limited internet'},{id:'ct2',text:'Kurang terampil menggunakan LMS',en:'LMS skills'},{id:'ct3',text:'Belum mampu membuat media interaktif',en:'Interactive media'},{id:'ct4',text:'Belum familiar dengan AI tools',en:'AI tools'},{id:'ct5',text:'Kurangnya perangkat memadai',en:'Insufficient devices'}];
+const ALL_CH=[...CP,...CA,...CT];
+const TRAIN=[{id:'t1',text:'Penyusunan CP, TP, dan ATP',en:'CP TP ATP'},{id:'t2',text:'Modul Ajar Kurikulum Merdeka',en:'KurMer modules'},{id:'t3',text:'ESP untuk berbagai jurusan',en:'ESP vocational'},{id:'t4',text:'Teaching at the Right Level (TaRL)',en:'TaRL'},{id:'t5',text:'Asesmen formatif, sumatif & diagnostik',en:'Assessment'},{id:'t6',text:'Pemanfaatan AI dalam pembelajaran',en:'AI teaching'},{id:'t7',text:'Media pembelajaran digital & interaktif',en:'Digital media'},{id:'t8',text:'Peningkatan English proficiency guru',en:'Teacher proficiency'},{id:'t9',text:'Penelitian Tindakan Kelas (PTK)',en:'Action Research'},{id:'t10',text:'Project-Based Learning (PjBL)',en:'PjBL'},{id:'t11',text:'Lesson Study & Peer Teaching',en:'Lesson Study'},{id:'t12',text:'Persiapan Asesmen Nasional',en:'National Assessment'}];
+const FMT=[{id:'f1',text:'Workshop praktis'},{id:'f2',text:'Seminar narasumber ahli'},{id:'f3',text:'Lesson study & observasi'},{id:'f4',text:'Diskusi studi kasus'},{id:'f5',text:'Peer teaching / microteaching'},{id:'f6',text:'Belajar mandiri (daring)'},{id:'f7',text:'Kunjungan sekolah/industri'}];
+const FREQ=[{id:'fr1',text:'1× per bulan'},{id:'fr2',text:'2× per bulan'},{id:'fr3',text:'1× per triwulan'},{id:'fr4',text:'Fleksibel'}];
+const WKT=[{id:'w1',text:'Hari kerja (setelah mengajar)'},{id:'w2',text:'Sabtu'},{id:'w3',text:'Libur sekolah'},{id:'w4',text:'Daring/online'},{id:'w5',text:'Blended'}];
+const HRP=[{id:'h1',text:'Peningkatan kompetensi pedagogik'},{id:'h2',text:'Peningkatan kemampuan Bahasa Inggris'},{id:'h3',text:'Berbagi best practices'},{id:'h4',text:'Bahan ajar siap pakai'},{id:'h5',text:'Jejaring profesional'},{id:'h6',text:'Dukungan kenaikan pangkat'},{id:'h7',text:'Persiapan PPG/sertifikasi'}];
+const NAR=[{id:'n1',text:'Ya, bersedia menjadi narasumber'},{id:'n2',text:'Bersedia jika sudah dilatih lebih dulu'},{id:'n3',text:'Tidak bersedia saat ini'}];
+const STEP_ICONS=['👤','📊','⚡','🎯','💬'];
 
-// ==================== STATE ====================
-let currentStep=1;const totalSteps=5;
-const state={likert:{},challenges:new Set(),training:new Set(),format:new Set(),waktu:new Set(),harapan:new Set(),frekuensi:'',narasumber:''};
-function getResponses(){try{return JSON.parse(localStorage.getItem('mgmp_responses')||'[]')}catch{return[]}}
-function saveResponses(r){localStorage.setItem('mgmp_responses',JSON.stringify(r))}
-function updateBadge(){document.getElementById('respCount').textContent=getResponses().length}
+async function gdrive(prompt){
+  const res=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:4000,
+      mcp_servers:[{type:'url',url:'https://drivemcp.googleapis.com/mcp/v1',name:'gdrive'}],
+      messages:[{role:'user',content:prompt}]})
+  });
+  const d=await res.json();
+  const results=d.content.filter(b=>b.type==='mcp_tool_result');
+  for(const r of results){const txt=r.content?.[0]?.text||'';if(txt)return txt}
+  return d.content.filter(b=>b.type==='text').map(b=>b.text).join('');
+}
 
-// === PRIVACY MASKING ===
-function maskName(name){
-  if(!name)return 'Anonim';
-  const parts=name.trim().split(/\s+/);
-  return parts.map(p=>{
-    if(p.length<=1)return p[0]+'*';
-    if(p.length<=3)return p[0]+'*'.repeat(p.length-1);
-    return p[0]+p[1]+'*'.repeat(p.length-2);
-  }).join(' ');
-}
-function maskEmail(email){
-  if(!email)return '—';
-  const [user,domain]=email.split('@');
-  if(!domain)return '***@***';
-  const maskedUser=user.length<=2?user[0]+'***':user.slice(0,2)+'*'.repeat(Math.min(user.length-2,5));
-  return maskedUser+'@'+domain;
-}
-function maskSchool(school){
-  if(!school)return '—';
-  const s=school.trim();
-  if(s.length<=4)return s[0]+'*'.repeat(s.length-1);
-  return s.slice(0,4)+'*'.repeat(Math.min(s.length-4,8));
-}
-function anonLabel(index){return 'Responden '+(index+1)}
-
-// === ADMIN MODE ===
-const ADMIN_PIN='mgmp2026';
-let isAdmin=false;
-function loginAdmin(){
-  const input=document.getElementById('adminPinInput');
-  if(!input)return;
-  if(input.value===ADMIN_PIN){isAdmin=true;showToast('🔓 Mode Admin aktif — identitas responden ditampilkan');renderResults()}
-  else{showToast('⚠️ Password salah');input.value=''}
-}
-function logoutAdmin(){isAdmin=false;showToast('🔒 Mode Admin dinonaktifkan');renderResults()}
-function renderAdminBar(){
-  if(isAdmin){
-    return `<div class="admin-bar logged-in">
-      <div class="admin-status unlocked">🔓 Mode Admin — Identitas terlihat</div>
-      <div style="flex:1"></div>
-      <button class="btn-admin btn-admin-logout" onclick="logoutAdmin()">Keluar Admin</button>
-    </div>`;
+async function loadFromDrive(){
+  setSyncBar('load','Memuat data...');
+  try{
+    const raw=await gdrive(`Download the file with ID "${FILE_ID}" and return its complete raw content as plain text.`);
+    const match=raw.match(/(\[[\s\S]*\])/);
+    if(match){
+      const data=JSON.parse(match[1]);
+      setSyncBar('ok',`Tersimpan di Google Drive · ${data.length} responden`);
+      try{localStorage.setItem('mgmp_local',JSON.stringify(data))}catch(e){}
+      return data;
+    }
+    setSyncBar('ok','Terhubung · Belum ada data');return[];
+  }catch(e){
+    setSyncBar('err','Offline — menggunakan cache lokal');
+    try{return JSON.parse(localStorage.getItem('mgmp_local')||'[]')}catch{return[]}
   }
-  return `<div class="admin-bar">
-    <div class="admin-status locked">🔒 Identitas responden disamarkan</div>
-    <div style="flex:1"></div>
-    <input type="password" class="admin-input" id="adminPinInput" placeholder="Password admin" onkeydown="if(event.key==='Enter')loginAdmin()" style="max-width:140px">
-    <button class="btn-admin btn-admin-login" onclick="loginAdmin()">Masuk</button>
-  </div>`;
+}
+async function saveToDrive(data){
+  setSyncBar('load','Menyimpan...');
+  try{
+    const b64=btoa(unescape(encodeURIComponent(JSON.stringify(data,null,2))));
+    await gdrive(`Update file ID "${FILE_ID}" with base64 content: "${b64}". File: mgmp-responses.json`);
+    setSyncBar('ok',`Tersimpan · ${data.length} responden`);
+    try{localStorage.setItem('mgmp_local',JSON.stringify(data))}catch(e){}
+    return true;
+  }catch(e){
+    setSyncBar('err','Gagal simpan ke Drive');
+    try{localStorage.setItem('mgmp_local',JSON.stringify(data))}catch(e2){}
+    return false;
+  }
+}
+function setSyncBar(type,msg){
+  const el=document.getElementById('syncBar');
+  el.className='sync-pill '+(type==='ok'?'sync-ok':type==='load'?'sync-load':'sync-err');
+  el.innerHTML=type==='load'?`<span class="spin">↻</span> ${msg}`:msg;
+}
+async function updateBadge(){
+  const r=await loadFromDrive();
+  document.getElementById('respCount').textContent=r.length;
+  return r;
 }
 
-// ==================== INIT ====================
+function renderAdminBar(){
+  if(isAdmin)return`<div class="adm-bar active"><span style="font-size:12px;font-weight:500;color:var(--ok)">🔓 Mode Admin aktif</span><div style="flex:1"></div><button class="btn btn-ghost btn-sm" onclick="logoutAdmin()">Keluar</button></div>`;
+  return`<div class="adm-bar"><span style="font-size:12px;color:var(--t3)">🔒 Identitas tersembunyi</span><div style="flex:1"></div><input type="password" id="adminPin" placeholder="Password admin" onkeydown="if(event.key==='Enter')loginAdmin()" style="max-width:130px;padding:.3rem .55rem;font-size:12px"><button class="btn btn-primary btn-sm" onclick="loginAdmin()" style="margin-left:.35rem">Masuk</button></div>`;
+}
+function loginAdmin(){
+  const el=document.getElementById('adminPin');
+  if(!el)return;
+  if(el.value===ADMIN_PIN){isAdmin=true;showToast('🔓 Mode Admin aktif');renderResults()}
+  else{showToast('⚠ Password salah');el.value=''}
+}
+function logoutAdmin(){isAdmin=false;showToast('🔒 Dinonaktifkan');renderResults()}
+function anonLabel(i){return 'Responden '+(i+1)}
+
 function init(){
-  renderProgress();renderLikert();
-  renderCheckGroup('chkPembelajaran',CHALLENGES.pembelajaran,'challenges');
-  renderCheckGroup('chkAsesmen',CHALLENGES.asesmen,'challenges');
-  renderCheckGroup('chkTeknologi',CHALLENGES.teknologi,'challenges');
-  renderCheckGroup('chkPelatihan',TRAINING_TOPICS,'training');
-  renderCheckGroup('chkFormat',FORMAT_OPTIONS,'format');
-  renderCheckGroup('chkWaktu',WAKTU_OPTIONS,'waktu');
-  renderCheckGroup('chkHarapan',HARAPAN_OPTIONS,'harapan');
-  renderRadioGroup('radioFrekuensi',FREQ_OPTIONS,'frekuensi');
-  renderRadioGroup('radioNarasumber',NARASUMBER_OPTIONS,'narasumber');
+  renderProg();renderLikert();
+  renderChk('chkP',CP,'challenges');renderChk('chkA',CA,'challenges');renderChk('chkT',CT,'challenges');
+  renderChk('chkTr',TRAIN,'training');renderChk('chkFmt',FMT,'format');
+  renderChk('chkWkt',WKT,'waktu');renderChk('chkHrp',HRP,'harapan');
+  renderRI('riFreq',FREQ,'frekuensi');renderRI('riNar',NAR,'narasumber');
   updateBadge();
 }
-function renderProgress(){
-  const c=document.getElementById('progressSteps');c.innerHTML='';
-  for(let i=1;i<=totalSteps;i++){const d=document.createElement('div');d.className='progress-step'+(i<currentStep?' done':i===currentStep?' active':'');c.appendChild(d)}
-  document.getElementById('progressLabel').textContent=`Bagian ${currentStep}/${totalSteps}`;
+function renderProg(){
+  const c=document.getElementById('progDots');c.innerHTML='';
+  for(let i=1;i<=5;i++){
+    const d=document.createElement('div');
+    d.className='step-dot';
+    const cls=i<currentStep?'done':i===currentStep?'active':'';
+    d.innerHTML=`<div class="dot ${cls}">${i<currentStep?'✓':i}</div>`;
+    c.appendChild(d);
+  }
+  document.getElementById('progLbl').textContent=`${currentStep} / 5`;
 }
 function renderLikert(){
-  const c=document.getElementById('likertContainer');const labels=['STS','TS','S','SS'];
-  c.innerHTML=LIKERT_ITEMS.map(item=>`<div class="likert-item"><div class="likert-text">${item.text}</div><div class="likert-text-en">${item.en}</div><div class="likert-options">${labels.map((l,i)=>`<button class="likert-btn" onclick="setLikert('${item.id}',${i+1},this)">${l}<br><span style="font-size:.55rem;font-weight:400">(${i+1})</span></button>`).join('')}</div></div>`).join('');
+  const lb=[['STS','1'],['TS','2'],['S','3'],['SS','4']];
+  document.getElementById('likertCont').innerHTML=LIKERT.map(it=>`
+    <div class="likert-item" id="li-${it.id}">
+      <div class="lt">${it.text}</div>
+      <div class="lt-en">${it.en}</div>
+      <div class="lopts">${lb.map(([l,v],i)=>`<button class="lbtn" onclick="setL('${it.id}',${i+1},this,'li-${it.id}')">${l}<br><span style="font-size:9px;opacity:.6">${v}</span></button>`).join('')}</div>
+    </div>`).join('');
 }
-function renderCheckGroup(cid,items,key){
-  document.getElementById(cid).innerHTML=items.map(item=>`<div class="check-item" onclick="toggleCheck(this,'${item.id}','${key}')"><div class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><div><div class="check-text">${item.text}</div>${item.en?`<div class="check-text-en">${item.en}</div>`:''}</div></div>`).join('');
+function renderChk(cid,items,key){
+  document.getElementById(cid).innerHTML=items.map(it=>`
+    <div class="ci" onclick="togChk(this,'${it.id}','${key}')">
+      <div class="cbox"><svg viewBox="0 0 9 9"><polyline points="1,4.5 3.5,7 8,1.5"/></svg></div>
+      <div><div class="ct">${it.text}</div>${it.en?`<div class="cen">${it.en}</div>`:''}</div>
+    </div>`).join('');
 }
-function renderRadioGroup(cid,items,key){
-  document.getElementById(cid).innerHTML=items.map(item=>`<div class="radio-item" onclick="setRadio(this,'${item.id}','${key}','${cid}')"><div class="radio-dot"></div><div class="check-text">${item.text}</div></div>`).join('');
+function renderRI(cid,items,key){
+  document.getElementById(cid).innerHTML=items.map(it=>`
+    <div class="ri" onclick="setRI(this,'${it.id}','${key}','${cid}')">
+      <div class="rdot"></div>
+      <div class="ct">${it.text}</div>
+    </div>`).join('');
 }
-function setLikert(id,val,btn){state.likert[id]=val;btn.parentElement.querySelectorAll('.likert-btn').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected')}
-function toggleCheck(el,id,key){el.classList.toggle('checked');state[key].has(id)?state[key].delete(id):state[key].add(id)}
-function setRadio(el,id,key,cid){document.getElementById(cid).querySelectorAll('.radio-item').forEach(r=>r.classList.remove('selected'));el.classList.add('selected');state[key]=id}
-function goStep(n){currentStep=n;document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));document.querySelector(`[data-step="${n}"]`).classList.add('active');renderProgress();window.scrollTo({top:0,behavior:'smooth'})}
-
-// ==================== PAGE SWITCH ====================
+function setL(id,val,btn,liId){
+  state.likert[id]=val;
+  btn.parentElement.querySelectorAll('.lbtn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  document.getElementById(liId)?.classList.add('rated');
+}
+function togChk(el,id,key){el.classList.toggle('checked');state[key].has(id)?state[key].delete(id):state[key].add(id)}
+function setRI(el,id,key,cid){document.getElementById(cid).querySelectorAll('.ri').forEach(r=>r.classList.remove('sel'));el.classList.add('sel');state[key]=id}
+function goStep(n){
+  currentStep=n;
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  document.querySelector(`[data-step="${n}"]`).classList.add('active');
+  renderProg();window.scrollTo({top:0,behavior:'smooth'});
+}
 function switchPage(p){
   document.getElementById('formPage').classList.toggle('active',p==='form');
   document.getElementById('resultsPage').classList.toggle('active',p==='results');
   document.getElementById('tabForm').classList.toggle('active',p==='form');
   document.getElementById('tabResults').classList.toggle('active',p==='results');
-  document.getElementById('progressBar').style.display=p==='form'?'':'none';
+  document.getElementById('progBar').style.display=p==='form'?'':'none';
   if(p==='results')renderResults();
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
-// ==================== SUBMIT ====================
-function submitForm(){
+async function submitForm(){
   const nama=document.getElementById('nama').value.trim();
-  if(!nama){showToast('⚠️ Mohon isi nama lengkap terlebih dahulu');goStep(1);return}
-  const record={
+  if(!nama){showToast('⚠ Mohon isi nama lengkap');goStep(1);return}
+  if(isSaving){showToast('↻ Sedang menyimpan...');return}
+  isSaving=true;
+  const rec={
     id:Date.now(),timestamp:new Date().toISOString(),
     profil:{nama,sekolah:document.getElementById('sekolah').value,jurusan:document.getElementById('jurusan').value,pendidikan:document.getElementById('pendidikan').value,masaMengajar:document.getElementById('masaMengajar').value,sertifikasi:document.getElementById('sertifikasi').value,email:document.getElementById('email').value},
     kompetensi:{...state.likert},tantangan:[...state.challenges],training:[...state.training],format:[...state.format],
     frekuensi:state.frekuensi,waktu:[...state.waktu],harapan:[...state.harapan],narasumber:state.narasumber,
-    saran:document.getElementById('saran')?.value||'',tantanganLain:document.getElementById('tantanganLain')?.value||'',pelatihanLain:document.getElementById('pelatihanLain')?.value||'',
+    saran:document.getElementById('saran')?.value||'',tantanganLain:document.getElementById('tantLain')?.value||'',pelatihanLain:document.getElementById('pelLain')?.value||'',
   };
-  const responses=getResponses();responses.push(record);saveResponses(responses);updateBadge();
-  showToast('✅ Data berhasil disimpan! Terima kasih, '+nama);
-  resetFormState();switchPage('results');
+  showToast('↻ Menyimpan ke Google Drive...');
+  const R=await loadFromDrive();R.push(rec);
+  const ok=await saveToDrive(R);
+  isSaving=false;
+  document.getElementById('respCount').textContent=R.length;
+  showToast(ok?`✅ Tersimpan! Terima kasih, ${nama}`:`✅ Disimpan lokal. Terima kasih, ${nama}`);
+  resetForm();switchPage('results');
 }
-function resetFormState(){
-  ['nama','sekolah','jurusan','email','saran','tantanganLain','pelatihanLain'].forEach(id=>{const e=document.getElementById(id);if(e)e.value=''});
+function resetForm(){
+  ['nama','sekolah','jurusan','email','saran','tantLain','pelLain'].forEach(id=>{const e=document.getElementById(id);if(e)e.value=''});
   ['pendidikan','masaMengajar','sertifikasi'].forEach(id=>{const e=document.getElementById(id);if(e)e.selectedIndex=0});
   state.likert={};state.challenges.clear();state.training.clear();state.format.clear();state.waktu.clear();state.harapan.clear();state.frekuensi='';state.narasumber='';
-  document.querySelectorAll('.likert-btn.selected,.check-item.checked,.radio-item.selected').forEach(e=>e.classList.remove('selected','checked'));
+  document.querySelectorAll('.lbtn.sel,.ci.checked,.ri.sel').forEach(e=>e.classList.remove('sel','checked'));
+  document.querySelectorAll('.likert-item.rated').forEach(e=>e.classList.remove('rated'));
   goStep(1);
 }
 
-// ==================== RESULTS DASHBOARD ====================
-function renderResults(){
-  const R=getResponses();const c=document.getElementById('resultsContent');
-  if(!R.length){c.innerHTML=`<div class="section-card"><div class="empty-state"><div class="empty-icon">📭</div><div class="empty-title">Belum Ada Data Responden</div><div class="empty-desc">Kuesioner belum ada yang mengisi. Bagikan link ke WAG MGMP agar anggota bisa mengisi.</div><button class="btn btn-primary" onclick="switchPage('form')">📝 Isi Kuesioner</button></div></div>`;return}
-  const N=R.length;
-  // Competency averages
-  const compAvg={};LIKERT_ITEMS.forEach(li=>{const vals=R.map(r=>r.kompetensi[li.id]).filter(v=>v);compAvg[li.id]=vals.length?(vals.reduce((a,b)=>a+b,0)/vals.length):0});
-  const filledAvgs=Object.values(compAvg).filter(v=>v);
-  const overallAvg=filledAvgs.length?filledAvgs.reduce((a,b)=>a+b,0)/filledAvgs.length:0;
-  // Challenge frequency
-  const chFreq={};ALL_CHALLENGES.forEach(ch=>{chFreq[ch.id]=R.filter(r=>r.tantangan.includes(ch.id)).length});
-  const topChallenges=ALL_CHALLENGES.map(ch=>({...ch,count:chFreq[ch.id],pct:Math.round(chFreq[ch.id]/N*100)})).sort((a,b)=>b.count-a.count).filter(c=>c.count>0);
-  // Training frequency
-  const trFreq={};TRAINING_TOPICS.forEach(t=>{trFreq[t.id]=R.filter(r=>r.training.includes(t.id)).length});
-  const topTraining=TRAINING_TOPICS.map(t=>({...t,count:trFreq[t.id],pct:Math.round(trFreq[t.id]/N*100)})).sort((a,b)=>b.count-a.count).filter(t=>t.count>0);
-  // Format preference
-  const fmtFreq={};FORMAT_OPTIONS.forEach(f=>{fmtFreq[f.id]=R.filter(r=>r.format.includes(f.id)).length});
-  const topFormats=FORMAT_OPTIONS.map(f=>({...f,count:fmtFreq[f.id],pct:Math.round(fmtFreq[f.id]/N*100)})).sort((a,b)=>b.count-a.count);
-  // Frequency pref
-  const freqCount={};FREQ_OPTIONS.forEach(f=>{freqCount[f.id]=R.filter(r=>r.frekuensi===f.id).length});
-  // Harapan
-  const hapFreq={};HARAPAN_OPTIONS.forEach(h=>{hapFreq[h.id]=R.filter(r=>r.harapan.includes(h.id)).length});
-  const topHarapan=HARAPAN_OPTIONS.map(h=>({...h,count:hapFreq[h.id],pct:Math.round(hapFreq[h.id]/N*100)})).sort((a,b)=>b.count-a.count);
-  // Demografi
-  const sertCount=R.filter(r=>r.profil.sertifikasi==='Sudah').length;
-  const unsertCount=R.filter(r=>r.profil.sertifikasi==='Belum').length;
-  const expCount={'< 5 tahun':0,'5–10 tahun':0,'> 10 tahun':0};R.forEach(r=>{if(expCount[r.profil.masaMengajar]!==undefined)expCount[r.profil.masaMengajar]++});
-  const narCount={};NARASUMBER_OPTIONS.forEach(n=>{narCount[n.id]=R.filter(r=>r.narasumber===n.id).length});
-  const weakComps=LIKERT_ITEMS.filter(li=>compAvg[li.id]>0&&compAvg[li.id]<2.5).sort((a,b)=>compAvg[a.id]-compAvg[b.id]);
-  const sekolahSet=new Set(R.map(r=>r.profil.sekolah).filter(s=>s));
-  function compColor(v){return v>=3?'var(--success)':v>=2?'var(--warning)':'var(--danger)'}
-  function donut(items,colors){
-    const total=items.reduce((a,b)=>a+b.value,0);if(!total)return '';
-    let offset=0;const r=35,circ=2*Math.PI*r;
-    const paths=items.map((item,i)=>{const pct=item.value/total;const dash=pct*circ;const gap=circ-dash;const svg=`<circle cx="50" cy="50" r="${r}" fill="none" stroke="${colors[i%colors.length]}" stroke-width="12" stroke-dasharray="${dash} ${gap}" stroke-dashoffset="${-offset}" transform="rotate(-90 50 50)"/>`;offset+=dash;return svg}).join('');
-    return `<svg viewBox="0 0 100 100">${paths}<text x="50" y="50" text-anchor="middle" dy=".35em" style="font-size:16px;font-weight:800;fill:var(--primary)">${total}</text></svg>`;
+async function renderResults(){
+  const R=await loadFromDrive();const c=document.getElementById('resCont');
+  if(!R.length){
+    c.innerHTML=`<div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:var(--rl);margin-bottom:1rem">
+      <div class="empty">
+        <span class="empty-icon">📭</span>
+        <h3>Belum Ada Data Responden</h3>
+        <p>Bagikan kuesioner ini ke anggota MGMP. Setiap respons langsung tersimpan di Google Drive.</p>
+        <div class="drive-banner" style="justify-content:center;margin:0 auto .85rem;max-width:300px">☁ Data tersimpan otomatis ke <a href="${FOLDER_URL}" target="_blank" style="color:var(--ok);text-decoration:underline;margin-left:4px">Google Drive ↗</a></div>
+        <button class="btn btn-primary" onclick="switchPage('form')">📝 Isi Kuesioner Sekarang</button>
+      </div>
+    </div>`;return;
   }
+  const N=R.length;
+  const cAvg={};LIKERT.forEach(li=>{const v=R.map(r=>r.kompetensi[li.id]).filter(v=>v);cAvg[li.id]=v.length?(v.reduce((a,b)=>a+b,0)/v.length):0});
+  const fa=Object.values(cAvg).filter(v=>v);const oAvg=fa.length?(fa.reduce((a,b)=>a+b,0)/fa.length):0;
+  const chF={};ALL_CH.forEach(ch=>{chF[ch.id]=R.filter(r=>r.tantangan.includes(ch.id)).length});
+  const topCh=ALL_CH.map(ch=>({...ch,count:chF[ch.id],pct:Math.round(chF[ch.id]/N*100)})).sort((a,b)=>b.count-a.count).filter(c=>c.count>0);
+  const trF={};TRAIN.forEach(t=>{trF[t.id]=R.filter(r=>r.training.includes(t.id)).length});
+  const topTr=TRAIN.map(t=>({...t,count:trF[t.id],pct:Math.round(trF[t.id]/N*100)})).sort((a,b)=>b.count-a.count).filter(t=>t.count>0);
+  const fmtF={};FMT.forEach(f=>{fmtF[f.id]=R.filter(r=>r.format.includes(f.id)).length});
+  const topFmt=FMT.map(f=>({...f,count:fmtF[f.id],pct:Math.round(fmtF[f.id]/N*100)})).sort((a,b)=>b.count-a.count);
+  const freqCnt={};FREQ.forEach(f=>{freqCnt[f.id]=R.filter(r=>r.frekuensi===f.id).length});
+  const hrpF={};HRP.forEach(h=>{hrpF[h.id]=R.filter(r=>r.harapan.includes(h.id)).length});
+  const topHrp=HRP.map(h=>({...h,count:hrpF[h.id],pct:Math.round(hrpF[h.id]/N*100)})).sort((a,b)=>b.count-a.count);
+  const sertY=R.filter(r=>r.profil.sertifikasi==='Sudah').length;
+  const sertN=R.filter(r=>r.profil.sertifikasi==='Belum').length;
+  const expC={'< 5 tahun':0,'5–10 tahun':0,'> 10 tahun':0};R.forEach(r=>{if(expC[r.profil.masaMengajar]!==undefined)expC[r.profil.masaMengajar]++});
+  const narC={};NAR.forEach(n=>{narC[n.id]=R.filter(r=>r.narasumber===n.id).length});
+  const weak=LIKERT.filter(li=>cAvg[li.id]>0&&cAvg[li.id]<2.5);
+  const skolSet=new Set(R.map(r=>r.profil.sekolah).filter(s=>s));
+  function cc(v){return v>=3?'#639922':v>=2?'#BA7517':'#A32D2D'}
+  function donut(items,colors){
+    const tot=items.reduce((a,b)=>a+b.value,0);if(!tot)return'<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="33" fill="none" stroke="var(--bd)" stroke-width="13"/></svg>';
+    let off=0;const r=33,circ=2*Math.PI*r;
+    const segs=items.map((it,i)=>{const p=it.value/tot,d=p*circ,g=circ-d;const s=`<circle cx="50" cy="50" r="${r}" fill="none" stroke="${colors[i%colors.length]}" stroke-width="13" stroke-dasharray="${d.toFixed(1)} ${g.toFixed(1)}" stroke-dashoffset="${(-off).toFixed(1)}" transform="rotate(-90 50 50)"/>`;off+=d;return s}).join('');
+    return`<svg viewBox="0 0 100 100">${segs}<text x="50" y="50" text-anchor="middle" dy=".35em" style="font-size:18px;font-weight:500;fill:var(--p-dark)">${tot}</text></svg>`;
+  }
+  function scoreBadge(v){if(v===0||!v)return'';const s=v.toFixed(1);return`<span class="score-badge ${v>=3?'score-high':v>=2?'score-mid':'score-low'}">${s}</span>`}
 
   let html='';
-  // Admin bar
   html+=renderAdminBar();
-  // Stats
+  html+=`<div class="drive-banner">☁ <strong>Tersimpan di Google Drive</strong> — dapat diakses dari perangkat mana pun &nbsp;<a href="${FOLDER_URL}" target="_blank" style="color:var(--ok);font-weight:500;text-decoration:underline;margin-left:2px">Buka Folder ↗</a></div>`;
   html+=`<div class="stats-grid">
-    <div class="stat-card"><div class="stat-value">${N}</div><div class="stat-label">Responden</div></div>
-    <div class="stat-card"><div class="stat-value">${sekolahSet.size}</div><div class="stat-label">Sekolah</div></div>
-    <div class="stat-card"><div class="stat-value">${overallAvg.toFixed(1)}</div><div class="stat-label">Avg Kompetensi</div></div>
-    <div class="stat-card"><div class="stat-value" style="color:${weakComps.length>3?'var(--danger)':'var(--success)'}">${weakComps.length}</div><div class="stat-label">Area Lemah</div></div>
+    <div class="stat"><div class="stat-val">${N}</div><div class="stat-lbl">Responden</div></div>
+    <div class="stat"><div class="stat-val">${skolSet.size}</div><div class="stat-lbl">Sekolah</div></div>
+    <div class="stat"><div class="stat-val" style="color:${cc(oAvg)}">${oAvg.toFixed(1)}</div><div class="stat-lbl">Rata-rata Komp.</div></div>
+    <div class="stat"><div class="stat-val" style="color:${weak.length>3?'#A32D2D':'#639922'}">${weak.length}</div><div class="stat-lbl">Area Lemah</div></div>
   </div>`;
 
-  // Demografi donuts
-  html+=`<div class="chart-card"><div class="chart-title"><span class="chart-title-icon">👥</span> Profil Demografi Responden</div>
-    <div class="donut-row">
-      <div class="donut-item">${donut([{value:sertCount},{value:unsertCount}],['var(--success)','var(--danger)'])}<div class="donut-label">Sertifikasi</div><div style="font-size:.55rem;color:var(--text-muted)">✅${sertCount} ❌${unsertCount}</div></div>
-      <div class="donut-item">${donut(Object.values(expCount).map(v=>({value:v})),['var(--primary-light)','var(--primary)','var(--accent)'])}<div class="donut-label">Pengalaman</div><div style="font-size:.55rem;color:var(--text-muted)">${Object.entries(expCount).map(([k,v])=>k+':'+v).join(' ')}</div></div>
-      <div class="donut-item">${donut(NARASUMBER_OPTIONS.map(n=>({value:narCount[n.id]})),['var(--success)','var(--warning)','var(--text-muted)'])}<div class="donut-label">Narasumber</div><div style="font-size:.55rem;color:var(--text-muted)">${NARASUMBER_OPTIONS.map(n=>n.text.split(',')[0]+':'+narCount[n.id]).join(' ')}</div></div>
-    </div></div>`;
+  html+=`<div class="chart-card">
+    <div class="ctitle">👥 Profil Demografi</div>
+    <div class="cdesc">Distribusi responden berdasarkan sertifikasi, pengalaman, dan kesediaan narasumber</div>
+    <div class="donut-wrap">
+      <div class="di">${donut([{value:sertY},{value:sertN}],['#639922','#A32D2D'])}<div class="di-lbl">Sertifikasi</div><div class="di-sub">✓${sertY} ✗${sertN}</div></div>
+      <div class="di">${donut(Object.values(expC).map(v=>({value:v})),['#378ADD','#185FA5','#EF9F27'])}<div class="di-lbl">Pengalaman</div><div class="di-sub">${Object.entries(expC).map(([k,v])=>k.replace(' tahun','')+'th:'+v).join(' ')}</div></div>
+      <div class="di">${donut(NAR.map(n=>({value:narC[n.id]||0})),['#639922','#BA7517','#888'])}<div class="di-lbl">Narasumber</div><div class="di-sub">Ya:${narC.n1||0} Latih:${narC.n2||0}</div></div>
+    </div>
+  </div>`;
 
-  // Competency
-  html+=`<div class="chart-card"><div class="chart-title"><span class="chart-title-icon">📊</span> Rata-rata Kompetensi Guru <span style="font-size:.65rem;font-weight:400;color:var(--text-muted)">(skala 1–4, ${N} responden)</span></div>
-    <div class="chart-desc">🟢 ≥ 3.0 Baik &nbsp; 🟡 2.0–2.9 Perlu Ditingkatkan &nbsp; 🔴 < 2.0 Kritis</div>
-    ${LIKERT_ITEMS.map(li=>{const v=compAvg[li.id];const pct=(v/4)*100;return `<div class="hbar"><div class="hbar-label"><span>${li.text}</span><span>${v.toFixed(2)}</span></div><div class="hbar-track"><div class="hbar-fill" style="width:${pct}%;background:${compColor(v)}"></div></div></div>`}).join('')}</div>`;
+  html+=`<div class="chart-card">
+    <div class="ctitle">📊 Rata-rata Kompetensi Guru</div>
+    <div class="cdesc">Skala 1–4 · ${N} responden</div>
+    <div class="legend">
+      <div class="leg-item"><div class="leg-dot" style="background:#639922"></div>≥3.0 Baik</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#BA7517"></div>2.0–2.9 Perlu ditingkatkan</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#A32D2D"></div>&lt;2.0 Kritis</div>
+    </div>
+    ${LIKERT.map(li=>{const v=cAvg[li.id],p=v?(v/4)*100:0;return`<div class="hbar"><div class="hbar-row"><span>${li.text}</span><span>${scoreBadge(v)}</span></div><div class="hbar-track"><div class="hbar-fill" style="width:${p.toFixed(1)}%;background:${cc(v)}"></div></div></div>`}).join('')}
+  </div>`;
 
-  // Challenges
-  if(topChallenges.length){
-    html+=`<div class="chart-card"><div class="chart-title"><span class="chart-title-icon">⚡</span> Tantangan Mengajar <span style="font-size:.65rem;font-weight:400;color:var(--text-muted)">(% responden)</span></div>
-      ${topChallenges.slice(0,10).map(ch=>`<div class="hbar"><div class="hbar-label"><span>${ch.text}</span><span>${ch.count}/${N} (${ch.pct}%)</span></div><div class="hbar-track"><div class="hbar-fill" style="width:${ch.pct}%;background:${ch.pct>=60?'var(--danger)':ch.pct>=30?'var(--warning)':'var(--primary)'}"></div></div></div>`).join('')}</div>`;
-  }
+  if(topCh.length)html+=`<div class="chart-card">
+    <div class="ctitle">⚡ Tantangan Mengajar</div>
+    <div class="cdesc">Persentase guru yang mengalami tantangan tersebut</div>
+    ${topCh.slice(0,10).map(ch=>`<div class="hbar"><div class="hbar-row"><span>${ch.text}</span><span>${ch.count}/${N} · ${ch.pct}%</span></div><div class="hbar-track"><div class="hbar-fill" style="width:${ch.pct}%;background:${ch.pct>=60?'#A32D2D':ch.pct>=30?'#BA7517':'#185FA5'}"></div></div></div>`).join('')}
+  </div>`;
 
-  // Training priority
-  if(topTraining.length){
-    html+=`<div class="chart-card"><div class="chart-title"><span class="chart-title-icon">🎯</span> Prioritas Kebutuhan Pelatihan</div>
-      <div class="priority-list">${topTraining.map((t,i)=>`<div class="priority-item" style="animation-delay:${i*0.06}s"><div class="priority-text">${t.text}<br><span style="font-size:.62rem;color:var(--text-muted)">${t.en}</span></div><div class="priority-score">${t.count}/${N} (${t.pct}%)</div></div>`).join('')}</div></div>`;
-  }
+  if(topTr.length)html+=`<div class="chart-card">
+    <div class="ctitle">🎯 Prioritas Kebutuhan Pelatihan</div>
+    <div class="cdesc">Diurutkan berdasarkan jumlah responden yang membutuhkan</div>
+    <div class="pri-list">${topTr.map((t,i)=>`<div class="pri-item"><div class="pri-num ${i===0?'n1':i===1?'n2':i===2?'n3':'nx'}">${i+1}</div><div class="pri-text">${t.text}</div><div class="pri-pct">${t.count}/${N} · ${t.pct}%</div></div>`).join('')}</div>
+  </div>`;
 
-  // Format & Harapan
-  html+=`<div class="chart-card"><div class="chart-title"><span class="chart-title-icon">🗓️</span> Preferensi & Harapan</div>
-    <h4 style="font-size:.75rem;color:var(--primary);margin-bottom:.4rem">Format Kegiatan</h4>
-    ${topFormats.filter(f=>f.count).map(f=>`<div class="hbar"><div class="hbar-label"><span>${f.text}</span><span>${f.pct}%</span></div><div class="hbar-track"><div class="hbar-fill" style="width:${f.pct}%;background:var(--primary)"></div></div></div>`).join('')}
-    <h4 style="font-size:.75rem;color:var(--primary);margin:.8rem 0 .4rem">Frekuensi Pertemuan</h4>
-    ${FREQ_OPTIONS.map(f=>{const cnt=freqCount[f.id];const pct=Math.round(cnt/N*100);return cnt?`<div class="hbar"><div class="hbar-label"><span>${f.text}</span><span>${cnt} (${pct}%)</span></div><div class="hbar-track"><div class="hbar-fill" style="width:${pct}%;background:var(--accent)"></div></div></div>`:''}).join('')}
-    <h4 style="font-size:.75rem;color:var(--primary);margin:.8rem 0 .4rem">Harapan Utama</h4>
-    ${topHarapan.filter(h=>h.count).map(h=>`<div class="hbar"><div class="hbar-label"><span>${h.text}</span><span>${h.pct}%</span></div><div class="hbar-track"><div class="hbar-fill" style="width:${h.pct}%;background:var(--success)"></div></div></div>`).join('')}</div>`;
+  html+=`<div class="chart-card">
+    <div class="ctitle">🗓️ Preferensi Kegiatan</div>
+    <div class="section-heading" style="margin-top:.5rem">Format kegiatan</div>
+    ${topFmt.filter(f=>f.count).map(f=>`<div class="hbar"><div class="hbar-row"><span>${f.text}</span><span>${f.pct}%</span></div><div class="hbar-track"><div class="hbar-fill" style="width:${f.pct}%;background:var(--p)"></div></div></div>`).join('')}
+    <div class="section-heading">Frekuensi pertemuan</div>
+    ${FREQ.map(f=>{const cnt=freqCnt[f.id]||0,p=Math.round(cnt/N*100);return cnt?`<div class="hbar"><div class="hbar-row"><span>${f.text}</span><span>${cnt} · ${p}%</span></div><div class="hbar-track"><div class="hbar-fill" style="width:${p}%;background:var(--acc)"></div></div></div>`:''}).join('')}
+    <div class="section-heading">Harapan utama</div>
+    ${topHrp.filter(h=>h.count).map(h=>`<div class="hbar"><div class="hbar-row"><span>${h.text}</span><span>${h.pct}%</span></div><div class="hbar-track"><div class="hbar-fill" style="width:${h.pct}%;background:#3B6D11"></div></div></div>`).join('')}
+  </div>`;
 
-  // Saran
   const saranList=R.map((r,i)=>({nama:isAdmin?r.profil.nama:anonLabel(i),saran:r.saran})).filter(s=>s.saran.trim());
-  if(saranList.length){
-    html+=`<div class="chart-card"><div class="chart-title"><span class="chart-title-icon">💬</span> Saran & Masukan</div>
-      ${saranList.map(s=>`<div style="background:var(--surface-alt);border-radius:8px;padding:.6rem .8rem;margin-bottom:.4rem;border-left:3px solid var(--primary-light)"><div style="font-size:.68rem;font-weight:700;color:var(--primary)">${isAdmin?'':'🔒 '}${s.nama}</div><div style="font-size:.72rem;color:var(--text-secondary)">${s.saran}</div></div>`).join('')}</div>`;
-  }
+  if(saranList.length)html+=`<div class="chart-card">
+    <div class="ctitle">💬 Saran & Masukan</div>
+    ${saranList.map(s=>`<div class="saran-item"><div class="sname">${isAdmin?'':'🔒 '}${s.nama}</div><div class="stxt">${s.saran}</div></div>`).join('')}
+  </div>`;
 
-  // Recommendations
-  html+=`<div class="chart-card"><div class="chart-title"><span class="chart-title-icon">🗺️</span> Rekomendasi Program Kerja MGMP</div>
-    <div class="chart-desc">Berdasarkan analisis agregat ${N} responden — dari quick wins hingga jangka panjang</div>
-    ${generateRecs(compAvg,topChallenges,topTraining,N).map(r=>`<div class="rec-card"><div class="rec-tag ${r.level}">${r.tag}</div><h4>${r.title}</h4><p>${r.desc}</p></div>`).join('')}</div>`;
+  html+=`<div class="chart-card">
+    <div class="ctitle">🗺️ Rekomendasi Program Kerja MGMP</div>
+    <div class="cdesc">Berdasarkan analisis dari ${N} responden</div>
+    ${genRecs(cAvg,topCh,topTr,N).map(r=>`<div class="rec-card"><div class="rec-tag ${r.lv==='easy'?'rec-easy':r.lv==='medium'?'rec-medium':'rec-hard'}">${r.tag}</div><h4>${r.title}</h4><p>${r.desc}</p></div>`).join('')}
+  </div>`;
 
-  // Respondent table
-  html+=`<div class="chart-card"><div class="chart-title"><span class="chart-title-icon">📋</span> Data Responden (${N})</div>
-    <div class="resp-table-wrap"><table class="resp-table"><thead><tr><th>No</th><th>${isAdmin?'Nama':'Responden'}</th><th>${isAdmin?'Sekolah':''}</th><th>Pend.</th><th>Pengalaman</th><th>Sertifikasi</th><th>Komp.</th><th>Tanggal</th>${isAdmin?'<th></th>':''}</tr></thead>
-    <tbody>${R.map((r,i)=>{const vals=Object.values(r.kompetensi);const avg=vals.length?(vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1):'—';const tgl=new Date(r.timestamp).toLocaleDateString('id-ID',{day:'2-digit',month:'short'});const dispName=isAdmin?r.profil.nama:anonLabel(i);const dispSchool=isAdmin?(r.profil.sekolah||'—'):'';return `<tr><td>${i+1}</td><td><strong>${dispName}</strong></td>${isAdmin?`<td>${dispSchool}</td>`:''}<td>${r.profil.pendidikan||'—'}</td><td>${r.profil.masaMengajar||'—'}</td><td>${r.profil.sertifikasi||'—'}</td><td style="color:${avg>=3?'var(--success)':avg>=2?'var(--warning)':'var(--danger)'}"><strong>${avg}</strong></td><td>${tgl}</td>${isAdmin?`<td><button class="resp-delete" onclick="deleteResp(${r.id})">🗑️</button></td>`:''}</tr>`}).join('')}</tbody></table></div></div>`;
+  html+=`<div class="chart-card">
+    <div class="ctitle">📋 Daftar Responden (${N})</div>
+    <div class="resp-wrap"><table class="resp-table">
+      <thead><tr><th>#</th><th>${isAdmin?'Nama':'Responden'}</th>${isAdmin?'<th>Sekolah</th>':''}<th>Pend.</th><th>Pengalaman</th><th>Sertif.</th><th>Komp.</th><th>Tanggal</th>${isAdmin?'<th></th>':''}</tr></thead>
+      <tbody>${R.map((r,i)=>{
+        const vals=Object.values(r.kompetensi).filter(v=>v);
+        const avg=vals.length?(vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1):'—';
+        const tgl=new Date(r.timestamp).toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'2-digit'});
+        const sChip=r.profil.sertifikasi==='Sudah'?'chip-ok':'chip-warn';
+        const sCh=r.profil.sertifikasi||'—';
+        return`<tr><td style="color:var(--t3)">${i+1}</td><td><span style="font-weight:500">${isAdmin?r.profil.nama:anonLabel(i)}</span></td>${isAdmin?`<td style="color:var(--t2)">${r.profil.sekolah||'—'}</td>`:''}<td style="color:var(--t2)">${r.profil.pendidikan||'—'}</td><td style="color:var(--t2)">${r.profil.masaMengajar||'—'}</td><td><span class="chip ${sChip}">${sCh}</span></td><td><span style="font-weight:500;color:${cc(parseFloat(avg))}">${avg}</span></td><td style="color:var(--t3)">${tgl}</td>${isAdmin?`<td><button class="resp-del" onclick="delResp(${r.id})">✕</button></td>`:''}</tr>`;
+      }).join('')}</tbody>
+    </table></div>
+  </div>`;
 
-  // Export
-  html+=`<div class="export-section"><h3>Simpan & Bagikan Hasil</h3><p>Download data atau salin ringkasan untuk WAG</p>
-    <div class="export-buttons">
-      <button class="btn-export" onclick="copyWA()">📱 Ringkasan WAG</button>
-      ${isAdmin?`<button class="btn-export" onclick="dlJSON()">💾 JSON</button>
-      <button class="btn-export" onclick="dlCSV()">📄 CSV</button>`:''}
-      <button class="btn-export" onclick="window.print()">🖨️ Cetak</button>
-    </div></div>
-    <div style="text-align:center;margin-top:1rem;display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap">
-      <button class="btn btn-primary" onclick="switchPage('form')">📝 Tambah Responden</button>
-      ${isAdmin?`<button class="btn btn-danger" onclick="confirmClearAll()">🗑️ Hapus Semua</button>`:''}
-    </div>`;
+  html+=`<div class="exp-card">
+    <h3>Simpan & Bagikan Hasil</h3>
+    <p>Data otomatis tersimpan di Google Drive — dapat diakses dari perangkat apapun</p>
+    <div class="exp-btns">
+      <button class="ebtn" onclick="copyWA()">📱 Ringkasan WAG</button>
+      ${isAdmin?`<button class="ebtn" onclick="dlJSON()">💾 Backup JSON</button><button class="ebtn" onclick="dlCSV()">📄 Export CSV</button>`:''}
+      <button class="ebtn" onclick="window.print()">🖨 Cetak</button>
+      <a href="${FOLDER_URL}" target="_blank" class="ebtn">☁ Google Drive ↗</a>
+    </div>
+  </div>
+  <div style="display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-top:.85rem;margin-bottom:.5rem">
+    <button class="btn btn-primary" onclick="switchPage('form')">📝 Tambah Responden</button>
+    ${isAdmin?`<button class="btn btn-danger" onclick="confirmClearAll()">Hapus Semua Data</button>`:''}
+  </div>`;
+
   c.innerHTML=html;
 }
 
-// ==================== RECOMMENDATIONS ====================
-function generateRecs(compAvg,topCh,topTr,N){
-  const recs=[];const topChIds=topCh.slice(0,5).map(c=>c.id);const topTrIds=topTr.slice(0,5).map(t=>t.id);
-  const weak=LIKERT_ITEMS.filter(li=>compAvg[li.id]>0&&compAvg[li.id]<2.5);
-  recs.push({level:'easy',tag:'Quick Win',title:'📱 Grup Berbagi Bahan Ajar & Resource',desc:`Buat folder Google Drive bersama. Setiap anggota kontribusi 1 resource/minggu. Tanpa biaya, mulai segera.`});
-  recs.push({level:'easy',tag:'Quick Win',title:'👥 Peer Teaching Bulanan',desc:`Jadwalkan 1 sesi/bulan — guru bergantian demo teknik terbaiknya. Fokus pada area kompetensi terendah.`});
-  if(weak.some(w=>['cp','tp','modul'].includes(w.id)))
-    recs.push({level:'easy',tag:'Quick Win',title:'📖 Workshop Bedah CP & ATP Fase F',desc:`Skor pemahaman kurikulum: ${compAvg.cp?.toFixed(1)||'—'}/4. Workshop internal untuk memastikan semua guru paham CP, TP, dan ATP.`});
-  if(topTrIds.includes('t3')||topChIds.includes('cp4'))
-    recs.push({level:'medium',tag:'Menengah',title:'🏭 Workshop ESP per Jurusan',desc:`${topCh.find(c=>c.id==='cp4')?.pct||0}% guru kesulitan ESP. Bagi kelompok per jurusan, susun bank materi ESP kolaboratif.`});
-  if(topChIds.some(id=>id.startsWith('ct'))||topTrIds.some(id=>['t6','t7'].includes(id)))
-    recs.push({level:'medium',tag:'Menengah',title:'💻 Pelatihan Bertahap: LMS → Media → AI',desc:`Tantangan teknologi dominan. Pelatihan 3 tahap bertahap dengan pendampingan.`});
-  if(weak.some(w=>w.id==='proficiency')||topTrIds.includes('t8'))
-    recs.push({level:'medium',tag:'Menengah',title:'🗣️ English Club Guru',desc:`Proficiency guru: ${compAvg.proficiency?.toFixed(1)||'—'}/4. Sesi practice rutin 2x/bulan: discussion, presentation, writing.`});
-  if(topChIds.some(id=>id.startsWith('ca'))||topTrIds.includes('t5'))
-    recs.push({level:'medium',tag:'Menengah',title:'📝 Workshop Asesmen Kurikulum Merdeka',desc:`Fokus: asesmen diagnostik, formatif, sumatif, soal HOTS, rubrik kinerja speaking/writing.`});
-  recs.push({level:'hard',tag:'Jangka Panjang',title:'📚 Bank Soal & Modul Digital Bersama',desc:`Target: setiap anggota kontribusi 1 modul + 1 paket soal/semester. Aset MGMP permanen.`});
-  if(topTrIds.includes('t9'))
-    recs.push({level:'hard',tag:'Jangka Panjang',title:'🔬 Pendampingan PTK Berkelompok',desc:`Fasilitasi PTK kolaboratif untuk mendukung kenaikan pangkat dan kualitas pembelajaran.`});
-  recs.push({level:'hard',tag:'Jangka Panjang',title:'🤝 Kemitraan DUDI & Perguruan Tinggi',desc:`Kerjasama industri untuk validasi ESP + universitas untuk pendampingan akademik.`});
+function genRecs(cAvg,topCh,topTr,N){
+  const recs=[];
+  const tcIds=topCh.slice(0,5).map(c=>c.id);
+  const ttIds=topTr.slice(0,5).map(t=>t.id);
+  const weak=LIKERT.filter(li=>cAvg[li.id]>0&&cAvg[li.id]<2.5);
+  recs.push({lv:'easy',tag:'Quick win',title:'📁 Folder Bersama Google Drive',desc:'Buat folder Drive untuk berbagi bahan ajar. Setiap anggota kontribusi 1 resource/minggu. Implementasi cepat, dampak langsung.'});
+  recs.push({lv:'easy',tag:'Quick win',title:'👥 Peer Teaching Bulanan',desc:'Jadwalkan sesi rutin — guru bergantian demo teknik terbaiknya. Biaya rendah, manfaat tinggi untuk komunitas.'});
+  if(weak.some(w=>['cp','tp','modul'].includes(w.id)))recs.push({lv:'easy',tag:'Quick win',title:'📖 Workshop Bedah CP & ATP Fase F',desc:`Skor pemahaman kurikulum: ${cAvg.cp?.toFixed(1)||'—'}/4.0. Workshop internal bedah CP, TP, dan ATP bersama fasilitator internal.`});
+  if(ttIds.includes('t3')||tcIds.includes('cp4'))recs.push({lv:'medium',tag:'Menengah',title:'🏭 Workshop ESP per Jurusan',desc:`${topCh.find(c=>c.id==='cp4')?.pct||0}% guru kesulitan mengintegrasikan ESP. Susun bank materi ESP kolaboratif untuk tiap jurusan.`});
+  if(tcIds.some(id=>id.startsWith('ct'))||ttIds.some(id=>['t6','t7'].includes(id)))recs.push({lv:'medium',tag:'Menengah',title:'💻 Pelatihan Teknologi: LMS → Media → AI',desc:'Tantangan teknologi signifikan. Pelatihan bertahap dengan pendampingan peer untuk membangun kepercayaan diri.'});
+  if(weak.some(w=>w.id==='proficiency')||ttIds.includes('t8'))recs.push({lv:'medium',tag:'Menengah',title:'🗣️ English Club untuk Guru',desc:`Proficiency: ${cAvg.proficiency?.toFixed(1)||'—'}/4.0. Sesi praktik speaking dan writing rutin 2×/bulan dalam suasana aman dan suportif.`});
+  recs.push({lv:'hard',tag:'Jangka panjang',title:'📚 Bank Soal & Modul Digital Kolaboratif',desc:'Target: tiap anggota kontribusi 1 modul + 1 paket soal per semester. Dibangun secara bertahap.'});
+  recs.push({lv:'hard',tag:'Jangka panjang',title:'🤝 Kemitraan DUDI & Perguruan Tinggi',desc:'Kolaborasi industri untuk validasi konten ESP, dan universitas untuk riset tindakan kelas.'});
   return recs;
 }
 
-// ==================== DELETE ====================
-function deleteResp(id){
+async function delResp(id){
   document.getElementById('confirmTitle').textContent='Hapus Responden?';
-  document.getElementById('confirmMsg').textContent='Data ini akan dihapus permanen.';
-  document.getElementById('confirmYes').onclick=()=>{saveResponses(getResponses().filter(r=>r.id!==id));updateBadge();renderResults();closeConfirm();showToast('🗑️ Dihapus')};
-  document.getElementById('confirmDialog').classList.add('show');
+  document.getElementById('confirmMsg').textContent='Data ini akan dihapus permanen dari Google Drive.';
+  document.getElementById('confirmYes').onclick=async()=>{
+    const R=await loadFromDrive();await saveToDrive(R.filter(r=>r.id!==id));
+    document.getElementById('respCount').textContent=R.length-1;
+    renderResults();closeConfirm();showToast('Data dihapus');
+  };
+  document.getElementById('confirmDlg').classList.add('show');
 }
-function confirmClearAll(){
+async function confirmClearAll(){
+  const R=await loadFromDrive();
   document.getElementById('confirmTitle').textContent='Hapus Semua Data?';
-  document.getElementById('confirmMsg').textContent=`${getResponses().length} responden akan dihapus permanen.`;
-  document.getElementById('confirmYes').onclick=()=>{localStorage.removeItem('mgmp_responses');updateBadge();renderResults();closeConfirm();showToast('🗑️ Semua dihapus')};
-  document.getElementById('confirmDialog').classList.add('show');
+  document.getElementById('confirmMsg').textContent=`${R.length} responden akan dihapus secara permanen. Tindakan ini tidak dapat dibatalkan.`;
+  document.getElementById('confirmYes').onclick=async()=>{
+    await saveToDrive([]);document.getElementById('respCount').textContent=0;
+    renderResults();closeConfirm();showToast('Semua data dihapus');
+  };
+  document.getElementById('confirmDlg').classList.add('show');
 }
-function closeConfirm(){document.getElementById('confirmDialog').classList.remove('show')}
+function closeConfirm(){document.getElementById('confirmDlg').classList.remove('show')}
 
-// ==================== EXPORT ====================
-function copyWA(){
-  const R=getResponses();if(!R.length)return showToast('⚠️ Belum ada data');
+async function copyWA(){
+  const R=await loadFromDrive();if(!R.length)return showToast('⚠ Belum ada data');
   const N=R.length;
-  const compAvg={};LIKERT_ITEMS.forEach(li=>{const vals=R.map(r=>r.kompetensi[li.id]).filter(v=>v);compAvg[li.id]=vals.length?(vals.reduce((a,b)=>a+b,0)/vals.length):0});
-  const fa=Object.values(compAvg).filter(v=>v);const overallAvg=fa.length?fa.reduce((a,b)=>a+b,0)/fa.length:0;
-  const chFreq={};ALL_CHALLENGES.forEach(ch=>{chFreq[ch.id]=R.filter(r=>r.tantangan.includes(ch.id)).length});
-  const topCh=ALL_CHALLENGES.map(ch=>({text:ch.text,count:chFreq[ch.id]})).sort((a,b)=>b.count-a.count).filter(c=>c.count>0).slice(0,5);
-  const trFreq={};TRAINING_TOPICS.forEach(t=>{trFreq[t.id]=R.filter(r=>r.training.includes(t.id)).length});
-  const topTr=TRAINING_TOPICS.map(t=>({text:t.text,count:trFreq[t.id]})).sort((a,b)=>b.count-a.count).filter(t=>t.count>0).slice(0,5);
-  const weak=LIKERT_ITEMS.filter(li=>compAvg[li.id]>0&&compAvg[li.id]<2.5);
-  const text=`📊 *HASIL KUESIONER ANALISIS KEBUTUHAN*\n*MGMP Bahasa Inggris SMK*\n━━━━━━━━━━━━━━━━━━\n\n👥 *Total Responden:* ${N} guru\n📊 *Rata-rata Kompetensi:* ${overallAvg.toFixed(1)}/4.0\n⚠️ *Area Lemah:* ${weak.length} area\n\n${topCh.length?`⚡ *5 Tantangan Terbesar:*\n${topCh.map((c,i)=>`  ${i+1}. ${c.text} (${Math.round(c.count/N*100)}%)`).join('\n')}`:''}\n\n${topTr.length?`🎯 *5 Pelatihan Teratas:*\n${topTr.map((t,i)=>`  ${i+1}. ${t.text} (${Math.round(t.count/N*100)}%)`).join('\n')}`:''}\n\n${weak.length?`📉 *Kompetensi Perlu Ditingkatkan:*\n${weak.map(w=>`  • ${w.text}: ${compAvg[w.id].toFixed(1)}/4`).join('\n')}`:''}\n\n━━━━━━━━━━━━━━━━━━\n_Data ${N} responden — MGMP Needs Assessment_`;
-  navigator.clipboard.writeText(text).then(()=>showToast('📋 Tersalin! Paste ke WAG'));
+  const cA={};LIKERT.forEach(li=>{const v=R.map(r=>r.kompetensi[li.id]).filter(v=>v);cA[li.id]=v.length?(v.reduce((a,b)=>a+b,0)/v.length):0});
+  const fa=Object.values(cA).filter(v=>v);const oa=fa.length?fa.reduce((a,b)=>a+b,0)/fa.length:0;
+  const chF={};ALL_CH.forEach(ch=>{chF[ch.id]=R.filter(r=>r.tantangan.includes(ch.id)).length});
+  const tc=ALL_CH.map(ch=>({text:ch.text,count:chF[ch.id]})).sort((a,b)=>b.count-a.count).filter(c=>c.count>0).slice(0,5);
+  const trF={};TRAIN.forEach(t=>{trF[t.id]=R.filter(r=>r.training.includes(t.id)).length});
+  const tt=TRAIN.map(t=>({text:t.text,count:trF[t.id]})).sort((a,b)=>b.count-a.count).filter(t=>t.count>0).slice(0,5);
+  const wk=LIKERT.filter(li=>cA[li.id]>0&&cA[li.id]<2.5);
+  const txt=`📊 *HASIL KUESIONER ANALISIS KEBUTUHAN*\n*MGMP Bahasa Inggris SMK*\n━━━━━━━━━━━━━━━━\n\n👥 *Responden:* ${N} guru\n📊 *Rata-rata Kompetensi:* ${oa.toFixed(1)}/4.0\n⚠️ *Area Lemah:* ${wk.length} area\n${tc.length?`\n⚡ *5 Tantangan Terbesar:*\n${tc.map((c,i)=>`  ${i+1}. ${c.text} (${Math.round(c.count/N*100)}%)`).join('\n')}`:''}\n${tt.length?`\n🎯 *5 Pelatihan Prioritas:*\n${tt.map((t,i)=>`  ${i+1}. ${t.text} (${Math.round(t.count/N*100)}%)`).join('\n')}`:''}${wk.length?`\n\n📉 *Kompetensi Perlu Ditingkatkan:*\n${wk.map(w=>`  • ${w.text}: ${cA[w.id].toFixed(1)}/4`).join('\n')}`:''}\n\n━━━━━━━━━━━━━━━━\n_MGMP Needs Assessment 2026_`;
+  navigator.clipboard.writeText(txt).then(()=>showToast('✓ Disalin — paste ke WAG'));
 }
-function dlJSON(){const R=getResponses();const b=new Blob([JSON.stringify(R,null,2)],{type:'application/json'});dl(b,`mgmp-responses-${new Date().toISOString().slice(0,10)}.json`);showToast('💾 JSON downloaded')}
-function dlCSV(){
-  const R=getResponses();if(!R.length)return showToast('⚠️ Belum ada data');
-  const h=['No','Nama','Sekolah','Jurusan','Pendidikan','Pengalaman','Sertifikasi','Email',...LIKERT_ITEMS.map(i=>'Komp:'+i.text.substring(0,25)),'Tantangan','Pelatihan','Format','Frekuensi','Waktu','Harapan','Narasumber','Saran','Timestamp'];
-  const rows=R.map((r,i)=>[i+1,r.profil.nama,r.profil.sekolah,r.profil.jurusan,r.profil.pendidikan,r.profil.masaMengajar,r.profil.sertifikasi,r.profil.email,...LIKERT_ITEMS.map(li=>r.kompetensi[li.id]||''),r.tantangan.map(id=>ALL_CHALLENGES.find(c=>c.id===id)?.text||id).join('; '),r.training.map(id=>TRAINING_TOPICS.find(t=>t.id===id)?.text||id).join('; '),r.format.map(id=>FORMAT_OPTIONS.find(f=>f.id===id)?.text||id).join('; '),FREQ_OPTIONS.find(f=>f.id===r.frekuensi)?.text||'',r.waktu.map(id=>WAKTU_OPTIONS.find(w=>w.id===id)?.text||id).join('; '),r.harapan.map(id=>HARAPAN_OPTIONS.find(x=>x.id===id)?.text||id).join('; '),NARASUMBER_OPTIONS.find(n=>n.id===r.narasumber)?.text||'',r.saran,r.timestamp]);
-  const csv=[h,...rows].map(r=>r.map(v=>`"${(v+'').replace(/"/g,'""')}"`).join(',')).join('\n');
-  dl(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'}),`mgmp-responses-${new Date().toISOString().slice(0,10)}.csv`);showToast('📄 CSV downloaded');
+async function dlJSON(){
+  const R=await loadFromDrive();
+  dl(new Blob([JSON.stringify(R,null,2)],{type:'application/json'}),`mgmp-backup-${new Date().toISOString().slice(0,10)}.json`);
+  showToast('💾 Backup JSON diunduh');
+}
+async function dlCSV(){
+  const R=await loadFromDrive();if(!R.length)return showToast('⚠ Belum ada data');
+  const h=['No','Nama','Sekolah','Jurusan','Pendidikan','Pengalaman','Sertifikasi','Email',...LIKERT.map(i=>'Komp:'+i.text.substring(0,18)),'Tantangan','Pelatihan','Format','Frekuensi','Waktu','Harapan','Narasumber','Saran','Timestamp'];
+  const rows=R.map((r,i)=>[i+1,r.profil.nama,r.profil.sekolah,r.profil.jurusan,r.profil.pendidikan,r.profil.masaMengajar,r.profil.sertifikasi,r.profil.email,...LIKERT.map(li=>r.kompetensi[li.id]||''),r.tantangan.map(id=>ALL_CH.find(c=>c.id===id)?.text||id).join('; '),r.training.map(id=>TRAIN.find(t=>t.id===id)?.text||id).join('; '),r.format.map(id=>FMT.find(f=>f.id===id)?.text||id).join('; '),FREQ.find(f=>f.id===r.frekuensi)?.text||'',r.waktu.map(id=>WKT.find(w=>w.id===id)?.text||id).join('; '),r.harapan.map(id=>HRP.find(x=>x.id===id)?.text||id).join('; '),NAR.find(n=>n.id===r.narasumber)?.text||'',r.saran,r.timestamp]);
+  dl(new Blob(['\uFEFF'+[h,...rows].map(r=>r.map(v=>`"${(v+'').replace(/"/g,'""')}"`).join(',')).join('\n')],{type:'text/csv;charset=utf-8'}),`mgmp-data-${new Date().toISOString().slice(0,10)}.csv`);
+  showToast('📄 CSV diunduh');
 }
 function dl(b,n){const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;a.click();URL.revokeObjectURL(a.href)}
-function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
+function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200)}
 
 init();
 </script>
-</body>
-</html>
